@@ -36,13 +36,23 @@
 			}
 
 			.d2l-image-tile-image-container {
-				background: var(--d2l-image-tile-image-background, var(--d2l-color-regolith));
+				border-bottom: 1px solid;
+				border-bottom-color: inherit;
 				border-top-left-radius: 6px;
 				border-top-right-radius: 6px;
-				box-shadow: 0px -1px 0 var(--d2l-color-gypsum) inset;
+				box-sizing: border-box;
 				height: var(--d2l-image-tile-image-height, 200px);
 				overflow: hidden;
 				position: relative;
+				transition: filter 0.25s, -webkit-filter 0.25s;
+				width: 100%;
+			}
+
+			.d2l-image-tile-image-area {
+				background: var(--d2l-image-tile-image-background, var(--d2l-color-regolith));
+				height: 100%;
+				position: absolute;
+				transition: filter 0.25s, -webkit-filter 0.25s, transform 0.5s ease-in-out;
 				width: 100%;
 			}
 
@@ -57,6 +67,11 @@
 				position: absolute;
 				right: 0;
 				top: 0;
+				transition: margin-top .25s;
+			}
+
+			:host([hover-effect~="lower-menu"]:not(:hover):not([focused]):not([menu-opened])) d2l-dropdown {
+				margin-top: 0px;
 			}
 
 			:host-context([dir="rtl"]) d2l-dropdown {
@@ -65,7 +80,7 @@
 			}
 
 			d2l-dropdown-more {
-				transition: color .5s,background .5s, opacity .5s;
+				transition: color .5s, background .5s, opacity .25s;
 			}
 
 			@media only screen and (hover: hover), only screen and (-moz-touch-enabled: 0) {
@@ -105,6 +120,27 @@
 				width: 100%;
 			}
 
+			:host([hover-effect~="emphasize-image"]:hover:not([loading])) .d2l-image-tile-image-container,
+			:host([hover-effect~="emphasize-image"][focused]:not([loading])) .d2l-image-tile-image-container {
+				-webkit-filter: saturate(1.15);
+				filter: saturate(1.15);
+			}
+
+			:host([hover-effect~="emphasize-image"]:hover:not([loading])) .d2l-image-tile-image-area,
+			:host([hover-effect~="emphasize-image"][focused]:not([loading])) .d2l-image-tile-image-area {
+				/* Ensure only one filter per layer to avoid aliasing bug in Webkit during transforms */
+				-webkit-filter: contrast(1.15);
+				filter: contrast(1.15);
+				transform: scale(1.1);
+			}
+
+			@supports (-ms-ime-align:auto) {
+				:host(:hover) .d2l-image-tile-image-container,
+				:host(:hover) .d2l-image-tile-image-area {
+					filter: none;
+				}
+			}
+
 			:host([hover-effect~="low-lift"]:not([loading])) {
 				transition: transform 0.2s, box-shadow 0.2s;
 			}
@@ -116,17 +152,19 @@
 			}
 		</style>
 		<div class="d2l-image-tile-image-container">
-			<template is="dom-if" if="[[loading]]">
-				<div class="d2l-image-tile-loading-shimmer d2l-image-tile-image"></div>
-			</template>
-			<template is="dom-if" if="[[!loading]]">
-				<slot name="d2l-image-tile-image">
-					<div
-						class="d2l-image-tile-image"
-						style$="[[_getImageStyle(imgUrl)]]"
-					></div>
-				</slot>
-			</template>
+			<div class="d2l-image-tile-image-area">
+				<template is="dom-if" if="[[loading]]">
+					<div class="d2l-image-tile-loading-shimmer d2l-image-tile-image"></div>
+				</template>
+				<template is="dom-if" if="[[!loading]]">
+					<slot name="d2l-image-tile-image">
+						<div
+							class="d2l-image-tile-image"
+							style$="[[_getImageStyle(imgUrl)]]"
+						></div>
+					</slot>
+				</template>
+			</div>
 		</div>
 		<d2l-dropdown on-tap="_onDropdownClick">
 			<d2l-dropdown-more
@@ -135,7 +173,8 @@
 				hidden$="[[!_shouldShowMenu(_showMenu, loading)]]">
 				<slot name="d2l-image-tile-dropdown"
 					id="dropdown-slot"
-					on-slot-changed="_handleSlotChange"></slot>
+					on-slot-changed="_handleSlotChange">
+				</slot>
 			</d2l-dropdown-more>
 		</d2l-dropdown>
 		<div class="d2l-image-tile-content-container">
