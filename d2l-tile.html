@@ -15,7 +15,6 @@
 				cursor: pointer;
 				display: block;
 				font: inherit;
-				overflow: hidden;
 				position: relative;
 				text-align: center;
 				width: 350px;
@@ -31,17 +30,36 @@
 				z-index: 2;
 			}
 
-			:host([hover-effect~="low-lift"]:not([loading])) {
-				transition: transform 0.2s, box-shadow 0.2s;
+			:host([hover-effect~="low-lift"]) {
+				transition: transform 0.2s;
 			}
 
-			:host([hover-effect~="low-lift"]:not([loading]):hover),
-			:host([hover-effect~="low-lift"]:not([loading]):focus) {
+			:host([hover-effect~="low-lift"])::after {
+				border-radius: 5px;
 				box-shadow: 0 4px 10px 0 var(--d2l-color-titanius);
+				content: '';
+				height: 100%;
+				left: 0;
+				opacity: 0;
+				position: absolute;
+				top: 0;
+				transition: opacity 0.3s ease-in-out;
+				width: 100%;
+				z-index: -1;
+			}
+
+			:host([hover-effect~="low-lift"]:hover),
+			:host([hover-effect~="low-lift"][focused]) {
 				transform: scale(1.03);
+			}
+
+			:host([hover-effect~="low-lift"]:hover)::after,
+			:host([hover-effect~="low-lift"][focused])::after {
+				opacity: 1;
 			}
 		</style>
 		<div class="d2l-tile-content-container">
+			<div class="d2l-tile-content-container">
 			<slot></slot>
 		</div>
 	</template>
@@ -57,10 +75,28 @@
 				type: String,
 				value: '',
 				reflectToAttribute: true
+			},
+			/**
+			 * A boolean reflecting the focus state of the element.
+			 */
+			focused: {
+				type: Boolean,
+				value: false,
+				reflectToAttribute: true
 			}
 		},
 		hostAttributes: {
 			tabindex: 0
+		},
+		listeners: {
+			'focus': '_onFocus',
+			'blur': '_onBlur'
+		},
+		_onFocus: function() {
+			this.focused = true;
+		},
+		_onBlur: function() {
+			this.focused = false;
 		}
 	});
 	</script>
