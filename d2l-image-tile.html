@@ -193,7 +193,8 @@
 				type: Boolean,
 				value: false,
 				reflectToAttribute: true
-			}
+			},
+			_slotObserver: Object
 		},
 		hostAttributes: {
 			tabindex: 0
@@ -205,7 +206,11 @@
 		attached: function() {
 			Polymer.RenderStatus.afterNextRender(this, function() {
 				this._handleSlotChanged();
+				this._slotObserver = Polymer.dom(this.$['dropdown-slot']).observeNodes(this._handleSlotChanged.bind(this));
 			}.bind(this));
+		},
+		detached: function() {
+			Polymer.dom(this.$['dropdown-slot']).unobserveNodes(this._slotObserver);
 		},
 		_handleSlotChanged: function() {
 			this._showMenu = this._isDropdownSlotFilled();
@@ -215,7 +220,7 @@
 			if (!slot) {
 				return false;
 			}
-			var slotElements = slot.assignedNodes();
+			var slotElements = Polymer.dom(slot).getDistributedNodes();
 			return slotElements && slotElements.length > 0;
 		},
 		_onDropdownClick: function(e) {
