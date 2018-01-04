@@ -22,6 +22,8 @@
 			html {
 				font-size: 20px;
 			}
+
+
 		</style>
 	</head>
 	<body unresolved class="d2l-typography">
@@ -42,14 +44,56 @@
 				</template>
 			</demo-snippet>
 
-			<h3>Tile with arbitrary HTML in the image slot and hover effect</h3>
+			<h3>Image tile with the emphasize-image and lower-menu hover effect</h3>
 			<demo-snippet>
 				<template>
-					<d2l-image-tile hover-effect="low-lift">
+					<d2l-image-tile img-url="https://s.brightspace.com/course-images/images/51fbf3cc-2149-4d88-890c-46efaca3ef8c/tile-high-density-mid-size.jpg" dropdown-aria-label="This is my menu" hover-effect="emphasize-image lower-menu">
+						<p>Tile content</p>
+						<d2l-dropdown-menu slot="d2l-image-tile-dropdown">
+							<d2l-menu>
+								<d2l-menu-item text="Menu item one"></d2l-menu-item>
+								<d2l-menu-item text="Menu item two"></d2l-menu-item>
+								<d2l-menu-item text="Menu item three"></d2l-menu-item>
+							</d2l-menu>
+						</d2l-dropdown-menu>
+					</d2l-image-tile>
+				</template>
+			</demo-snippet>
+
+			<h3>Tile with arbitrary HTML in the image slot</h3>
+			<demo-snippet>
+				<template>
+					<d2l-image-tile>
 						<p>Tile content</p>
 						<div slot="d2l-image-tile-image">
 							<p>Arbitrary HTML</p>
 						</div>
+					</d2l-image-tile>
+				</template>
+			</demo-snippet>
+
+			<h3>Tile where the content overlays the image and has the low-lift hover effect</h3>
+			<demo-snippet>
+				<custom-style>
+					<style is="custom-style">
+						.overlayed {
+							margin-top: -50px;
+							height: 100px;
+							width: 100px;
+							margin-left: auto;
+							margin-right: auto;
+							border-radius: 7px;
+							border: gray solid 2px;
+							background: lightcyan;
+						}
+					</style>
+				</custom-style>
+				<template>
+					<d2l-image-tile img-url="https://s.brightspace.com/course-images/images/51fbf3cc-2149-4d88-890c-46efaca3ef8c/tile-high-density-mid-size.jpg" hover-effect="low-lift">
+						<div class="overlayed">
+							<p>Tile content</p>
+						</div>
+						<p>More Tile content</p>
 					</d2l-image-tile>
 				</template>
 			</demo-snippet>
