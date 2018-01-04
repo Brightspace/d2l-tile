@@ -116,8 +116,10 @@ A custom background can also be supplied for where the image is placed using the
 
 ### Hover Effects
 
-Both `<d2l-tile>` and `<d2l-image-tile>` support setting an effect for when the user hovers over the tile. It's a comma-separated list of hover effects, which can currently include:
+Both `<d2l-tile>` and `<d2l-image-tile>` support setting an effect for when the user hovers over the tile. It's a space separated list of hover effects, which can currently include:
+- emphasize-image: The image zooms in and it's colors saturate
 - low-lift: tile lifts slightly off the page
+- lower-menu: the menu lowers slightly when the tile is hovered
 
 ```html
 <d2l-tile hover-effect="low-lift">
