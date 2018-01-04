@@ -210,7 +210,9 @@
 			}.bind(this));
 		},
 		detached: function() {
-			Polymer.dom(this.$['dropdown-slot']).unobserveNodes(this._slotObserver);
+			if (this._slotObserver) {
+				Polymer.dom(this.$['dropdown-slot']).unobserveNodes(this._slotObserver);
+			}
 		},
 		_handleSlotChanged: function() {
 			this._showMenu = this._isDropdownSlotFilled();
