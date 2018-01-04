@@ -93,6 +93,12 @@
 				}
 			}
 
+			@media only screen and (-moz-touch-enabled: 1) {
+				:host([hover-effect~="lower-menu"]:not(:hover):not([focused]):not([menu-opened])) d2l-dropdown {
+					margin-top: 15px;
+				}
+			}
+
 			.d2l-image-tile-content-container {
 				position: relative;
 				width: 100%;
