@@ -135,7 +135,7 @@
 		<d2l-dropdown on-tap="_onDropdownClick">
 			<d2l-dropdown-more
 				id="dropdown-more"
-				label="[[dropdownAriaLabel]]"
+				label="[[dropdownLabel]]"
 				hidden$="[[!_shouldShowMenu(_showMenu, loading)]]">
 				<slot name="d2l-image-tile-dropdown"
 					id="dropdown-slot"
@@ -155,7 +155,7 @@
 			 * Gets or sets the [aria-label](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-label_attribute)
 			 * attribute for the dropdown "more" button.
 			 */
-			dropdownAriaLabel: String,
+			dropdownLabel: String,
 			/**
 			 * A URL pointing at the path to the image to show in the tile.
 			 */
