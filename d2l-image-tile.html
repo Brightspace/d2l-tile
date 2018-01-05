@@ -67,15 +67,14 @@
 			}
 
 			d2l-dropdown {
-				margin: 15px;
-				position: absolute;
+				margin: 0 15px 15px 15px;
 				right: 0;
 				top: 0;
 				transition: margin-top .25s;
 			}
 
 			:host([hover-effect~="lower-menu"]:not(:hover):not([focused]):not([menu-opened])) d2l-dropdown {
-				margin-top: 0px;
+				margin-top: -15px;
 			}
 
 			:host-context([dir="rtl"]) d2l-dropdown {
@@ -100,7 +99,7 @@
 
 			@media only screen and (-moz-touch-enabled: 1) {
 				:host([hover-effect~="lower-menu"]:not(:hover):not([focused]):not([menu-opened])) d2l-dropdown {
-					margin-top: 15px;
+					margin-top: 0;
 				}
 			}
 
@@ -183,6 +182,18 @@
 			:host([hover-effect~="low-lift"]:not([loading])[focused])::after {
 				opacity: 1;
 			}
+
+			.d2l-image-tile-menu-adjacent-container ::slotted(*)  {
+				margin-right: 15px;
+			}
+
+			.d2l-image-tile-menu-area {
+				position: absolute;
+				right: 0;
+				top: 0;
+				margin-top: 15px;
+				display: flex;
+			}
 		</style>
 		<div class="d2l-image-tile-image-container">
 			<div class="d2l-image-tile-image-area">
@@ -199,17 +210,23 @@
 				</template>
 			</div>
 		</div>
-		<d2l-dropdown on-tap="_onDropdownClick">
-			<d2l-dropdown-more
-				id="dropdown-more"
-				label="[[dropdownLabel]]"
-				hidden$="[[!_shouldShowMenu(_showMenu, loading)]]">
-				<slot name="d2l-image-tile-dropdown"
-					id="dropdown-slot"
-					on-slot-changed="_handleSlotChange">
+		<div class="d2l-image-tile-menu-area">
+			<d2l-dropdown on-tap="_onDropdownClick">
+				<d2l-dropdown-more
+					id="dropdown-more"
+					label="[[dropdownLabel]]"
+					hidden$="[[!_shouldShowMenu(_showMenu, loading)]]">
+					<slot name="d2l-image-tile-dropdown"
+						id="dropdown-slot"
+						on-slot-changed="_handleSlotChange">
+					</slot>
+				</d2l-dropdown-more>
+			</d2l-dropdown>
+			<div class="d2l-image-tile-menu-adjacent-container">
+				<slot name="d2l-image-tile-menu-adjacent">
 				</slot>
-			</d2l-dropdown-more>
-		</d2l-dropdown>
+			</div>
+		</div>
 		<div class="d2l-image-tile-content-container">
 			<slot></slot>
 		</div>

@@ -42,11 +42,41 @@
 				</template>
 			</demo-snippet>
 
-			<h3>Image tile with the emphasize-image and lower-menu hover effect</h3>
+			<h3>Image tile with the emphasize-image, lower-menu hover effect, and menu-adjacent content</h3>
 			<demo-snippet>
 				<template>
-					<d2l-image-tile img-url="https://s.brightspace.com/course-images/images/51fbf3cc-2149-4d88-890c-46efaca3ef8c/tile-high-density-mid-size.jpg" dropdown-label="This is my menu" hover-effect="emphasize-image lower-menu">
-						<p>Tile content</p>
+					<custom-style>
+						<style is="custom-style">
+							.menu-adjacent {
+								height: 35px;
+								width: 35px;
+								border-radius: 7px;
+								background: lightcyan;
+								opacity: 0.7;
+							}
+
+							.menu-adjacent:hover {
+								background: white;
+							}
+
+							[hidden] {
+								display: none;
+							}
+						</style>
+					</custom-style>
+					<script>
+						function clicky() { // eslint-disable-line no-unused-vars
+							var item = document.querySelector('.menu-adjacent');
+							item.hidden = !item.hidden;
+						}
+					</script>
+					<d2l-image-tile
+						img-url="https://s.brightspace.com/course-images/images/51fbf3cc-2149-4d88-890c-46efaca3ef8c/tile-high-density-mid-size.jpg"
+						dropdown-label="This is my menu"
+						hover-effect="emphasize-image lower-menu"
+						onclick="clicky()"
+					>
+						<p>Click to toggle menu-adjacent content</p>
 						<d2l-dropdown-menu slot="d2l-image-tile-dropdown">
 							<d2l-menu>
 								<d2l-menu-item text="Menu item one"></d2l-menu-item>
@@ -54,6 +84,7 @@
 								<d2l-menu-item text="Menu item three"></d2l-menu-item>
 							</d2l-menu>
 						</d2l-dropdown-menu>
+						<div class="menu-adjacent" slot="d2l-image-tile-menu-adjacent"></div>
 					</d2l-image-tile>
 				</template>
 			</demo-snippet>
