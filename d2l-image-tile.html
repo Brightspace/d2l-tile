@@ -187,12 +187,32 @@
 				margin-right: 15px;
 			}
 
+			:host-context([dir="rtl"]) .d2l-image-tile-menu-adjacent-container ::slotted(*) {
+				margin-right: 0;
+				margin-left: 15px;
+			}
+
+			:host(:dir(rtl)) .d2l-image-tile-menu-adjacent-container ::slotted(*) {
+				margin-right: 0;
+				margin-left: 15px;
+			}
+
 			.d2l-image-tile-menu-area {
 				position: absolute;
 				right: 0;
 				top: 0;
 				margin-top: 15px;
 				display: flex;
+			}
+
+			:host-context([dir="rtl"]) .d2l-image-tile-menu-area {
+				left: 0;
+				right: auto;
+			}
+
+			:host(:dir(rtl)) .d2l-image-tile-menu-area {
+				left: 0;
+				right: auto;
 			}
 		</style>
 		<div class="d2l-image-tile-image-container">

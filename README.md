@@ -80,6 +80,10 @@ To display a `...` "more" dropdown, provide content inside the `d2l-image-tile-d
 </d2l-image-tile>
 ```
 
+#### Menu-adjacent content
+
+If you need to add an element to the right of the "more" menu, you can use the `d2l-image-tile-menu-adjacent` slot.
+
 #### Loading State
 
 The image tile can be placed in an initial "loading" state:
