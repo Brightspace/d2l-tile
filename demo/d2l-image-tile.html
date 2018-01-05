@@ -53,21 +53,34 @@
 								border-radius: 7px;
 								background: lightcyan;
 								opacity: 0.7;
+								margin-right: 10px;
+								transition: opacity 0.25s, width 0.15s, margin-right 0.25s, padding-left 0.25s, padding-right 0.25s
 							}
 
 							.menu-adjacent:hover {
 								background: white;
 							}
 
-							[hidden] {
-								display: none;
+							.hidden {
+								visibility: hidden;
+								width: 0.1px; /* needed so d2l-icon doesnt overflow on safari */
+								margin-right: 0;
+								margin-left: 0;
+								padding-left: 0;
+								padding-right: 0;
+								opacity: 0;
+							}
+
+							[dir="rtl"] .menu-adjacent {
+ 								margin-right: 0;
+								margin-left: 10px;
 							}
 						</style>
 					</custom-style>
 					<script>
 						function clicky() { // eslint-disable-line no-unused-vars
 							var item = document.querySelector('.menu-adjacent');
-							item.hidden = !item.hidden;
+							item.classList.toggle('hidden');
 						}
 					</script>
 					<d2l-image-tile
