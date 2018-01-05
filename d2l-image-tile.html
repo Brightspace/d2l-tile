@@ -73,10 +73,6 @@
 				transition: margin-top .25s;
 			}
 
-			:host([hover-effect~="lower-menu"]:not(:hover):not([focused]):not([menu-opened])) d2l-dropdown {
-				margin-top: -15px;
-			}
-
 			:host-context([dir="rtl"]) d2l-dropdown {
 				left: 0;
 				right: auto;
@@ -92,14 +88,12 @@
 			}
 
 			@media only screen and (hover: hover), only screen and (-moz-touch-enabled: 0) {
+				:host([hover-effect~="lower-menu"]:not(:hover):not([focused]):not([menu-opened])) d2l-dropdown {
+					margin-top: -15px;
+				}
+
 				d2l-dropdown-more {
 					opacity: 0;
-				}
-			}
-
-			@media only screen and (-moz-touch-enabled: 1) {
-				:host([hover-effect~="lower-menu"]:not(:hover):not([focused]):not([menu-opened])) d2l-dropdown {
-					margin-top: 0;
 				}
 			}
 
