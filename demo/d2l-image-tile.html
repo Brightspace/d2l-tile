@@ -42,7 +42,7 @@
 				</template>
 			</demo-snippet>
 
-			<h3>Image tile with the emphasize-image, lower-menu hover effect, and menu-adjacent content</h3>
+			<h3>Image tile making up a course tile</h3>
 			<demo-snippet>
 				<template>
 					<custom-style>
@@ -79,6 +79,10 @@
 							.course-tile {
 								border-color: transparent;
 							}
+
+							d2l-image-tile:hover .hover-underline {
+								text-decoration: underline;
+							}
 						</style>
 					</custom-style>
 					<script>
@@ -94,7 +98,7 @@
 						onclick="clicky()"
 						class="course-tile"
 					>
-						<p>Click to toggle menu-adjacent content</p>
+						<p class="hover-underline">Click to toggle menu-adjacent content</p>
 						<d2l-dropdown-menu slot="d2l-image-tile-dropdown">
 							<d2l-menu>
 								<d2l-menu-item text="Menu item one"></d2l-menu-item>
