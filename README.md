@@ -45,7 +45,7 @@ Basic example using a URL-based image:
 
 ```html
 <link rel="import" href="bower_components/d2l-tile/d2l-image-tile.html">
-<d2l-image-tile image-url="path-to-image.png">
+<d2l-image-tile img-url="path-to-image.png">
 	Content below image.
 </d2l-image-tile>
 ```

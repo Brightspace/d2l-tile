@@ -83,6 +83,10 @@
 				transition: margin-top .25s;
 			}
 
+			:host([hover-effect~="lower-menu"]:not(:hover):not([focused]):not([menu-opened])) d2l-dropdown {
+				margin-top: -15px;
+			}
+
 			:host-context([dir="rtl"]) d2l-dropdown {
 				left: 0;
 				right: auto;
