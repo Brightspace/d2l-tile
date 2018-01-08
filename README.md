@@ -80,7 +80,7 @@ To display a `...` "more" dropdown, provide content inside the `d2l-image-tile-d
 </d2l-image-tile>
 ```
 
-The `...` mwny will always show on mobile, unless you set the `no-mobile-more-button` attribute to true.
+The `...` menu will always show on mobile, unless you set the `no-mobile-more-button` attribute to true.
 
 #### Menu-adjacent content
 
