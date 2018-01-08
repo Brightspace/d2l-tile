@@ -5,6 +5,8 @@
 
 [Polymer](https://www.polymer-project.org/1.0/)-based web components for D2L tiles.
 
+![screenshot of tile component](/tile.gif?raw=true)
+
 ## Installation
 
 `d2l-tile` can be installed from [Bower][bower-url]:
