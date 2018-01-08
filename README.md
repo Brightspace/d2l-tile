@@ -5,8 +5,6 @@
 
 [Polymer](https://www.polymer-project.org/1.0/)-based web components for D2L tiles.
 
-![screenshot of text input component](/tile.gif?raw=true)
-
 ## Installation
 
 `d2l-tile` can be installed from [Bower][bower-url]:
@@ -14,6 +12,21 @@
 ```shell
 bower install d2l-tile
 ```
+
+## Usage
+
+Include the [webcomponents.js](http://webcomponents.org/polyfills/) "lite" polyfill (for browsers who don't natively support web components), then import either `d2l-tile.html` or `d2l-image-tile.html` as needed:
+
+```html
+<head>
+	<script src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+	<!-- imports here -->
+</head>
+```
+
+### d2l-tile
+
+`<d2l-tile>` is a barebones bordered container for arbitrary content.
 
 <!---
 ```
@@ -50,6 +63,10 @@ bower install d2l-tile
 </d2l-tile>
 ```
 
+### d2l-image-tile
+
+An extension of `<d2l-tile>`, `<d2l-image-tile>` adds an image at the top, content at the bottom, and an optional `...` "more" menu which can launch a [d2l-dropdown-menu](https://github.com/BrightspaceUI/dropdown#menu-content).
+
 <!---
 ```
 <custom-element-demo>
@@ -85,6 +102,7 @@ bower install d2l-tile
 <d2l-image-tile
 	img-url="https://s.brightspace.com/course-images/images/51fbf3cc-2149-4d88-890c-46efaca3ef8c/tile-high-density-mid-size.jpg"
 	dropdown-label="This is my menu"
+	hover-effect="low-lift"
 >
 	<p>Tile content</p>
 	<d2l-dropdown-menu slot="d2l-image-tile-dropdown">
@@ -96,32 +114,6 @@ bower install d2l-tile
 	</d2l-dropdown-menu>
 </d2l-image-tile>
 ```
-
-## Usage
-
-Include the [webcomponents.js](http://webcomponents.org/polyfills/) "lite" polyfill (for browsers who don't natively support web components), then import either `d2l-tile.html` or `d2l-image-tile.html` as needed:
-
-```html
-<head>
-	<script src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
-	<!-- imports here -->
-</head>
-```
-
-### d2l-tile
-
-`<d2l-tile>` is a barebones bordered container for arbitrary content.
-
-```html
-<link rel="import" href="bower_components/d2l-tile/d2l-tile.html">
-<d2l-tile>
-	<p>Anything can go in here!</p>
-</d2l-tile>
-```
-
-### d2l-image-tile
-
-An extension of `<d2l-tile>`, `<d2l-image-tile>` adds an image at the top, content at the bottom, and an optional `...` "more" menu which can launch a [d2l-dropdown-menu](https://github.com/BrightspaceUI/dropdown#menu-content).
 
 Basic example using a URL-based image:
 
@@ -147,20 +139,6 @@ Alternatively, you can provide custom image content in the `d2l-image-tile-image
 To display a `...` "more" dropdown, provide content inside the `d2l-image-tile-dropdown` slot.
 
 **Note:** always provide an accessible label for the menu using the `dropdown-label` attribute.
-
-```html
-<link rel="import" href="bower_components/d2l-menu/d2l-menu.html">
-<link rel="import" href="bower_components/d2l-menu/d2l-menu-item.html">
-<d2l-image-tile dropdown-label="Tile Options">
-	<d2l-dropdown-menu slot="d2l-image-tile-dropdown">
-		<d2l-menu>
-			<d2l-menu-item text="Menu item one"></d2l-menu-item>
-			<d2l-menu-item text="Menu item two"></d2l-menu-item>
-			<d2l-menu-item text="Menu item three"></d2l-menu-item>
-		</d2l-menu>
-	</d2l-dropdown-menu>
-</d2l-image-tile>
-```
 
 The `...` menu will always show on mobile, unless you set the `no-mobile-more-button` attribute to true.
 
