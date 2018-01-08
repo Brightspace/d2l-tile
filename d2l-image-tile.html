@@ -35,6 +35,7 @@
 
 			:host([no-mobile-more-button]) d2l-dropdown-more {
 				opacity: 0;
+				display: none;
 				pointer-events: none;
 			}
 
@@ -117,12 +118,20 @@
 					pointer-events: all;
 				}
 
+				:host([no-mobile-more-button]) d2l-dropdown-more {
+					display: inline-block;
+				}
+
 				d2l-dropdown-more {
 					opacity: 0;
 				}
 			}
 
 			@media only screen and (-moz-touch-enabled: 1) {
+				:host([no-mobile-more-button]) d2l-dropdown-more {
+					display: inline-block;
+				}
+
 				:host([no-mobile-more-button]:hover) d2l-dropdown-more,
 				:host([no-mobile-more-button][focused]) d2l-dropdown-more,
 				:host([no-mobile-more-button][menu-opened]) d2l-dropdown-more {
