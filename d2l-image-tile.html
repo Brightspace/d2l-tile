@@ -33,10 +33,21 @@
 				width: 350px;
 			}
 
-			:host(:hover) d2l-dropdown-more,
-			:host([focused]) d2l-dropdown-more,
-			:host([menu-opened]) d2l-dropdown-more {
+			:host([no-mobile-more-button]) d2l-dropdown-more {
+				opacity: 0;
+				display: none;
+				pointer-events: none;
+			}
+
+			:host([no-mobile-more-button][hover-effect~="lower-menu"]:not(:hover):not([focused]):not([menu-opened])) d2l-dropdown {
+				margin-top: -15px;
+			}
+
+			:host(:not([no-mobile-more-button]):hover) d2l-dropdown-more,
+			:host(:not([no-mobile-more-button])[focused]) d2l-dropdown-more,
+			:host(:not([no-mobile-more-button])[menu-opened]) d2l-dropdown-more {
 				opacity: 1;
+				pointer-events: all;
 			}
 
 			.d2l-image-tile-image-container {
@@ -67,15 +78,14 @@
 			}
 
 			d2l-dropdown {
-				margin: 15px;
-				position: absolute;
+				margin: 0 15px 15px 15px;
 				right: 0;
 				top: 0;
 				transition: margin-top .25s;
 			}
 
 			:host([hover-effect~="lower-menu"]:not(:hover):not([focused]):not([menu-opened])) d2l-dropdown {
-				margin-top: 0px;
+				margin-top: -15px;
 			}
 
 			:host-context([dir="rtl"]) d2l-dropdown {
@@ -93,14 +103,40 @@
 			}
 
 			@media only screen and (hover: hover), only screen and (-moz-touch-enabled: 0) {
+				:host([hover-effect~="lower-menu"]:not(:hover):not([focused]):not([menu-opened])) d2l-dropdown {
+					margin-top: -15px;
+				}
+
+				:host([focused]) d2l-dropdown-more {
+					opacity: 1;
+				}
+
+				:host(:hover) d2l-dropdown-more,
+				:host([focused]) d2l-dropdown-more,
+				:host([menu-opened]) d2l-dropdown-more {
+					opacity: 1;
+					pointer-events: all;
+				}
+
+				:host([no-mobile-more-button]) d2l-dropdown-more {
+					display: inline-block;
+				}
+
 				d2l-dropdown-more {
 					opacity: 0;
 				}
 			}
 
 			@media only screen and (-moz-touch-enabled: 1) {
-				:host([hover-effect~="lower-menu"]:not(:hover):not([focused]):not([menu-opened])) d2l-dropdown {
-					margin-top: 15px;
+				:host([no-mobile-more-button]) d2l-dropdown-more {
+					display: inline-block;
+				}
+
+				:host([no-mobile-more-button]:hover) d2l-dropdown-more,
+				:host([no-mobile-more-button][focused]) d2l-dropdown-more,
+				:host([no-mobile-more-button][menu-opened]) d2l-dropdown-more {
+					opacity: 1;
+					pointer-events: all;
 				}
 			}
 
@@ -183,6 +219,38 @@
 			:host([hover-effect~="low-lift"]:not([loading])[focused])::after {
 				opacity: 1;
 			}
+
+			.d2l-image-tile-menu-adjacent-container ::slotted(*)  {
+				margin-right: 15px;
+			}
+
+			:host-context([dir="rtl"]) .d2l-image-tile-menu-adjacent-container ::slotted(*) {
+				margin-right: 0;
+				margin-left: 15px;
+			}
+
+			:host(:dir(rtl)) .d2l-image-tile-menu-adjacent-container ::slotted(*) {
+				margin-right: 0;
+				margin-left: 15px;
+			}
+
+			.d2l-image-tile-menu-area {
+				position: absolute;
+				right: 0;
+				top: 0;
+				margin-top: 15px;
+				display: flex;
+			}
+
+			:host-context([dir="rtl"]) .d2l-image-tile-menu-area {
+				left: 0;
+				right: auto;
+			}
+
+			:host(:dir(rtl)) .d2l-image-tile-menu-area {
+				left: 0;
+				right: auto;
+			}
 		</style>
 		<div class="d2l-image-tile-image-container">
 			<div class="d2l-image-tile-image-area">
@@ -199,17 +267,23 @@
 				</template>
 			</div>
 		</div>
-		<d2l-dropdown on-tap="_onDropdownClick">
-			<d2l-dropdown-more
-				id="dropdown-more"
-				label="[[dropdownLabel]]"
-				hidden$="[[!_shouldShowMenu(showMenu, loading, _menuHasContents)]]">
-				<slot name="d2l-image-tile-dropdown"
-					id="dropdown-slot"
-					on-slot-changed="_handleSlotChange">
+		<div class="d2l-image-tile-menu-area">
+			<d2l-dropdown on-tap="_onDropdownClick">
+				<d2l-dropdown-more
+					id="dropdown-more"
+					label="[[dropdownLabel]]"
+					hidden$="[[_shouldShowMenu(showMenu, loading, _menuHasContents)]]">
+					<slot name="d2l-image-tile-dropdown"
+						id="dropdown-slot"
+						on-slot-changed="_handleSlotChange">
+					</slot>
+				</d2l-dropdown-more>
+			</d2l-dropdown>
+			<div class="d2l-image-tile-menu-adjacent-container">
+				<slot name="d2l-image-tile-menu-adjacent">
 				</slot>
-			</d2l-dropdown-more>
-		</d2l-dropdown>
+			</div>
+		</div>
 		<div class="d2l-image-tile-content-container">
 			<slot></slot>
 		</div>
@@ -261,6 +335,10 @@
 			focused: {
 				type: Boolean,
 				value: false,
+				reflectToAttribute: true
+			},
+			noMobileMoreButton: {
+				type: Boolean,
 				reflectToAttribute: true
 			},
 			_slotObserver: Object,

@@ -42,11 +42,64 @@
 				</template>
 			</demo-snippet>
 
-			<h3>Image tile with the emphasize-image and lower-menu hover effect</h3>
+			<h3>Image tile made up to look like a course tile</h3>
 			<demo-snippet>
 				<template>
-					<d2l-image-tile img-url="https://s.brightspace.com/course-images/images/51fbf3cc-2149-4d88-890c-46efaca3ef8c/tile-high-density-mid-size.jpg" dropdown-label="This is my menu" hover-effect="emphasize-image lower-menu">
-						<p>Tile content</p>
+					<custom-style>
+						<style is="custom-style">
+							.menu-adjacent {
+								height: 35px;
+								width: 35px;
+								border-radius: 7px;
+								background: lightcyan;
+								opacity: 0.7;
+								margin-right: 10px;
+								transition: opacity 0.25s, width 0.15s, margin-right 0.25s, padding-left 0.25s, padding-right 0.25s
+							}
+
+							.menu-adjacent:hover {
+								background: white;
+							}
+
+							.hidden {
+								visibility: hidden;
+								width: 0.1px; /* needed so d2l-icon doesnt overflow on safari */
+								margin-right: 0;
+								margin-left: 0;
+								padding-left: 0;
+								padding-right: 0;
+								opacity: 0;
+							}
+
+							[dir="rtl"] .menu-adjacent {
+ 								margin-right: 0;
+								margin-left: 10px;
+							}
+
+							.course-tile {
+								border-color: transparent;
+							}
+
+							d2l-image-tile:hover .hover-underline {
+								text-decoration: underline;
+							}
+						</style>
+					</custom-style>
+					<script>
+						function clicky() { // eslint-disable-line no-unused-vars
+							var item = document.querySelector('.menu-adjacent');
+							item.classList.toggle('hidden');
+						}
+					</script>
+					<d2l-image-tile
+						img-url="https://s.brightspace.com/course-images/images/51fbf3cc-2149-4d88-890c-46efaca3ef8c/tile-high-density-mid-size.jpg"
+						dropdown-label="This is my menu"
+						hover-effect="emphasize-image lower-menu"
+						onclick="clicky()"
+						class="course-tile"
+						no-mobile-more-button
+					>
+						<p class="hover-underline">Click to toggle menu-adjacent content</p>
 						<d2l-dropdown-menu slot="d2l-image-tile-dropdown">
 							<d2l-menu>
 								<d2l-menu-item text="Menu item one"></d2l-menu-item>
@@ -54,6 +107,7 @@
 								<d2l-menu-item text="Menu item three"></d2l-menu-item>
 							</d2l-menu>
 						</d2l-dropdown-menu>
+						<div class="menu-adjacent" slot="d2l-image-tile-menu-adjacent"></div>
 					</d2l-image-tile>
 				</template>
 			</demo-snippet>

@@ -5,7 +5,7 @@
 
 [Polymer](https://www.polymer-project.org/1.0/)-based web components for D2L tiles.
 
-![screenshot of text input component](/tile.gif?raw=true)
+![screenshot of tile component](/tile.gif?raw=true)
 
 ## Installation
 
@@ -30,9 +30,37 @@ Include the [webcomponents.js](http://webcomponents.org/polyfills/) "lite" polyf
 
 `<d2l-tile>` is a barebones bordered container for arbitrary content.
 
+<!---
+```
+<custom-element-demo>
+  <template>
+    <script src="../webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="../d2l-typography/d2l-typography.html">
+    <link rel="import" href="d2l-tile.html">
+    <custom-style include="d2l-typography">
+      <style is="custom-style" include="d2l-typography"></style>
+    </custom-style>
+    <style>
+      html {
+        font-size: 20px;
+      }
+      d2l-tile {
+        color: var(--d2l-color-ferrite);
+        font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+        letter-spacing: 0.01rem;
+        font-size: 0.95rem;
+        font-weight: 400;
+        line-height: 1.4rem;
+      }
+    </style>
+    <next-code-block></next-code-block>
+  </template>
+</custom-element-demo>
+```
+-->
 ```html
 <link rel="import" href="bower_components/d2l-tile/d2l-tile.html">
-<d2l-tile>
+<d2l-tile hover-effect="low-lift">
 	<p>Anything can go in here!</p>
 </d2l-tile>
 ```
@@ -41,11 +69,59 @@ Include the [webcomponents.js](http://webcomponents.org/polyfills/) "lite" polyf
 
 An extension of `<d2l-tile>`, `<d2l-image-tile>` adds an image at the top, content at the bottom, and an optional `...` "more" menu which can launch a [d2l-dropdown-menu](https://github.com/BrightspaceUI/dropdown#menu-content).
 
+<!---
+```
+<custom-element-demo>
+  <template>
+    <script src="../webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="../d2l-typography/d2l-typography.html">
+	<link rel="import" href="../d2l-menu/d2l-menu.html">
+	<link rel="import" href="../d2l-menu/d2l-menu-item.html">
+	<link rel="import" href="../d2l-dropdown/d2l-dropdown-menu.html">
+    <link rel="import" href="d2l-image-tile.html">
+    <custom-style include="d2l-typography">
+      <style is="custom-style" include="d2l-typography"></style>
+    </custom-style>
+    <style>
+      html {
+        font-size: 20px;
+      }
+      d2l-image-tile {
+        color: var(--d2l-color-ferrite);
+        font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+        letter-spacing: 0.01rem;
+        font-size: 0.95rem;
+        font-weight: 400;
+        line-height: 1.4rem;
+      }
+    </style>
+    <next-code-block></next-code-block>
+  </template>
+</custom-element-demo>
+```
+-->
+```html
+<d2l-image-tile
+	img-url="https://s.brightspace.com/course-images/images/51fbf3cc-2149-4d88-890c-46efaca3ef8c/tile-high-density-mid-size.jpg"
+	dropdown-label="This is my menu"
+	hover-effect="low-lift"
+>
+	<p>Tile content</p>
+	<d2l-dropdown-menu slot="d2l-image-tile-dropdown">
+		<d2l-menu>
+			<d2l-menu-item text="Menu item one"></d2l-menu-item>
+			<d2l-menu-item text="Menu item two"></d2l-menu-item>
+			<d2l-menu-item text="Menu item three"></d2l-menu-item>
+		</d2l-menu>
+	</d2l-dropdown-menu>
+</d2l-image-tile>
+```
+
 Basic example using a URL-based image:
 
 ```html
 <link rel="import" href="bower_components/d2l-tile/d2l-image-tile.html">
-<d2l-image-tile image-url="path-to-image.png">
+<d2l-image-tile img-url="path-to-image.png">
 	Content below image.
 </d2l-image-tile>
 ```
@@ -66,19 +142,11 @@ To display a `...` "more" dropdown, provide content inside the `d2l-image-tile-d
 
 **Note:** always provide an accessible label for the menu using the `dropdown-label` attribute.
 
-```html
-<link rel="import" href="bower_components/d2l-menu/d2l-menu.html">
-<link rel="import" href="bower_components/d2l-menu/d2l-menu-item.html">
-<d2l-image-tile dropdown-label="Tile Options">
-	<d2l-dropdown-menu slot="d2l-image-tile-dropdown">
-		<d2l-menu>
-			<d2l-menu-item text="Menu item one"></d2l-menu-item>
-			<d2l-menu-item text="Menu item two"></d2l-menu-item>
-			<d2l-menu-item text="Menu item three"></d2l-menu-item>
-		</d2l-menu>
-	</d2l-dropdown-menu>
-</d2l-image-tile>
-```
+The `...` menu will always show on mobile, unless you set the `no-mobile-more-button` attribute to true.
+
+#### Menu-adjacent content
+
+If you need to add an element to the right of the "more" menu, you can use the `d2l-image-tile-menu-adjacent` slot.
 
 #### Loading State
 
