@@ -203,7 +203,7 @@
 			<d2l-dropdown-more
 				id="dropdown-more"
 				label="[[dropdownLabel]]"
-				hidden$="[[!_shouldShowMenu(_showMenu, loading)]]">
+				hidden$="[[!_shouldShowMenu(showMenu, loading, _menuHasContents)]]">
 				<slot name="d2l-image-tile-dropdown"
 					id="dropdown-slot"
 					on-slot-changed="_handleSlotChange">
@@ -232,9 +232,10 @@
 			 * When true, shows a '...' "more" menu that opens a dropdown menu
 			 * comprised of the contents of the `d2l-image-tile-menu` slot.
 			 */
-			_showMenu: {
+			showMenu: {
 				type: Boolean,
-				value: false
+				reflectToAttribute: true,
+				value: true
 			},
 			/**
 			 * A space-separated string listing the hover effect to be applied
@@ -262,7 +263,11 @@
 				value: false,
 				reflectToAttribute: true
 			},
-			_slotObserver: Object
+			_slotObserver: Object,
+			_menuHasContents: {
+				type: Boolean,
+				value: false
+			}
 		},
 		hostAttributes: {
 			tabindex: 0
@@ -283,7 +288,7 @@
 			}
 		},
 		_handleSlotChanged: function() {
-			this._showMenu = this._isDropdownSlotFilled();
+			this._menuHasContents = this._isDropdownSlotFilled();
 		},
 		_isDropdownSlotFilled: function() {
 			var slot = this.$['dropdown-slot'];
@@ -301,8 +306,8 @@
 				'background: url(' + imgUrl + '); background-size: cover; background-position: center;' :
 				'display: none;';
 		},
-		_shouldShowMenu: function(showMenu, loading) {
-			return showMenu && !loading;
+		_shouldShowMenu: function(showMenu, loading, menuHasContents) {
+			return showMenu && !loading && menuHasContents;
 		},
 		_onFocus: function() {
 			this.focused = true;
