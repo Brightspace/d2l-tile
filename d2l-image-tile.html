@@ -146,6 +146,11 @@
 				z-index: 2;
 			}
 
+			.d2l-image-tile-container {
+				height: 100%;
+				border-color: inherit;
+			}
+
 			@keyframes loadingShimmer {
 				0% { transform: translate3d(-100%, 0, 0); }
 				100% { transform: translate3d(100%, 0, 0); }
@@ -252,7 +257,7 @@
 				right: auto;
 			}
 		</style>
-		<div class="container" tabindex="0">
+		<div class="d2l-image-tile-container" tabindex="0">
 			<div class="d2l-image-tile-image-container">
 				<div class="d2l-image-tile-image-area">
 					<template is="dom-if" if="[[loading]]">
