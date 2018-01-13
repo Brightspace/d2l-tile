@@ -65,6 +65,9 @@ Include the [webcomponents.js](http://webcomponents.org/polyfills/) "lite" polyf
 </d2l-tile>
 ```
 
+#### Making the tile into a link:
+You can make the tile into a link by passing in a `href` property
+
 ### d2l-image-tile
 
 An extension of `<d2l-tile>`, `<d2l-image-tile>` adds an image at the top, content at the bottom, and an optional `...` "more" menu which can launch a [d2l-dropdown-menu](https://github.com/BrightspaceUI/dropdown#menu-content).
@@ -135,6 +138,9 @@ Alternatively, you can provide custom image content in the `d2l-image-tile-image
 	</div>
 </d2l-image-tile>
 ```
+
+#### Making the image tile into a link:
+You can make the tile into a link by passing in a `href` property
 
 #### "More" menu
 

@@ -20,6 +20,9 @@
 			html {
 				font-size: 20px;
 			}
+			.padding {
+				padding: 3px;
+			}
 		</style>
 	</head>
 	<body unresolved class="d2l-typography">
@@ -38,6 +41,17 @@
 				<template>
 					<d2l-tile hover-effect="low-lift">
 						<p>Tile with Hover State</p>
+					</d2l-tile>
+				</template>
+			</demo-snippet>
+
+			<h3>Tile with link</h3>
+			<demo-snippet>
+				<template>
+					<d2l-tile href="https://www.google.com">
+						<div class="padding">
+							<p>Tile with link</p>
+						</div>
 					</d2l-tile>
 				</template>
 			</demo-snippet>

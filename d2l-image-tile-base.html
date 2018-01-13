@@ -1,0 +1,43 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<dom-module id="d2l-image-tile-base">
+	<template strip-whitespace>
+		<style>
+			:host {
+				border-color: inherit;
+			}
+
+			.d2l-image-tile-base-link {
+				color: black;
+				text-decoration: none;
+				border-color: inherit;
+			}
+
+			.d2l-image-tile-base-div {
+				border-color: inherit;
+			}
+		</style>
+		<template is="dom-if" if="[[href]]">
+			<a class="d2l-image-tile-base-link" href=[[href]]>
+				<slot name="d2l-image-tile-base-content"></slot>
+			</a>
+		</template>
+		<template is="dom-if" if="[[!href]]">
+			<div class="d2l-image-tile-base-div" tabindex="0">
+				<slot name="d2l-image-tile-base-content"></slot>
+			</div>
+		</template>
+		<slot name="d2l-image-tile-base-menu-area"></slot>
+	</template>
+	<script>
+	Polymer({
+		is: 'd2l-image-tile-base',
+		properties: {
+			href: {
+				type: String,
+				value: null
+			}
+		}
+	});
+	</script>
+</dom-module>

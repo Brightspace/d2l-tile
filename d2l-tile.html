@@ -28,6 +28,8 @@
 				position: relative;
 				width: 100%;
 				z-index: 2;
+				text-decoration: none;
+				color: black;
 			}
 
 			:host([hover-effect~="low-lift"]) {
@@ -58,10 +60,16 @@
 				opacity: 1;
 			}
 		</style>
-		<div class="d2l-tile-content-container">
-			<div class="d2l-tile-content-container">
-			<slot></slot>
-		</div>
+		<template is="dom-if" if="[[href]]">
+			<a class="d2l-tile-content-container" href=[[href]]>
+				<slot></slot>
+			</a>
+		</template>
+		<template is="dom-if" if="[[!href]]">
+			<div class="d2l-tile-content-container" tabindex="0">
+				<slot></slot>
+			</div>
+		</template>
 	</template>
 	<script>
 	Polymer({
@@ -83,14 +91,22 @@
 				type: Boolean,
 				value: false,
 				reflectToAttribute: true
+			},
+			/**
+			 * A location to go when you click on the tile
+			 */
+			href: {
+				type: String,
+				value: null
 			}
 		},
-		hostAttributes: {
-			tabindex: 0
+		attached: function() {
+			this.addEventListener('focus', this._onFocus, true);
+			this.addEventListener('blur', this._onBlur, true);
 		},
-		listeners: {
-			'focus': '_onFocus',
-			'blur': '_onBlur'
+		detached: function() {
+			this.removeEventListener('focus', this._onFocus);
+			this.removeEventListener('blur', this._onBlur);
 		},
 		_onFocus: function() {
 			this.focused = true;
