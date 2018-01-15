@@ -17,12 +17,12 @@
 				border-color: inherit;
 			}
 		</style>
-		<template is="dom-if" if="[[href]]">
-			<a class="d2l-image-tile-base-link" href=[[href]]>
+		<template is="dom-if" if="href=[[_hasHref(href)]]">
+			<a class="d2l-image-tile-base-link" href$=[[href]]>
 				<slot name="d2l-image-tile-base-content"></slot>
 			</a>
 		</template>
-		<template is="dom-if" if="[[!href]]">
+		<template is="dom-if" if="[[!_hasHref(href)]]">
 			<div class="d2l-image-tile-base-div" tabindex="0">
 				<slot name="d2l-image-tile-base-content"></slot>
 			</div>
@@ -37,6 +37,9 @@
 				type: String,
 				value: null
 			}
+		},
+		_hasHref: function(href) {
+			return href !== undefined && href !== null;
 		}
 	});
 	</script>

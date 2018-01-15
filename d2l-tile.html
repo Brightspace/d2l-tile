@@ -60,12 +60,12 @@
 				opacity: 1;
 			}
 		</style>
-		<template is="dom-if" if="[[href]]">
+		<template is="dom-if" if="[[_hasHref(href)]]">
 			<a class="d2l-tile-content-container" href=[[href]]>
 				<slot></slot>
 			</a>
 		</template>
-		<template is="dom-if" if="[[!href]]">
+		<template is="dom-if" if="[[!_hasHref(href)]]">
 			<div class="d2l-tile-content-container" tabindex="0">
 				<slot></slot>
 			</div>
@@ -113,6 +113,9 @@
 		},
 		_onBlur: function() {
 			this.focused = false;
+		},
+		_hasHref: function(href) {
+			return href !== undefined && href !== null;
 		}
 	});
 	</script>
