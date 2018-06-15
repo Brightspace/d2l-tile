@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+		<title>d2l-image-tile-base tests</title>
+		<script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+		<script src="../../web-component-tester/browser.js"></script>
+		<link rel="import" href="../d2l-image-tile-base.html">
+	</head>
+	<body>
+		<test-fixture id="image-tile-base">
+			<template>
+				<d2l-image-tile-base></d2l-image-tile-base>
+			</template>
+		</test-fixture>
+		<script>
+			describe('d2l-image-tile-base', () => {
+				var component;
+
+				beforeEach(() => {
+					component = fixture('image-tile-base');
+				});
+
+				it('should instantiate the component', () => {
+					expect(component.is).to.equal('d2l-image-tile-base');
+				});
+
+				describe('Public API', () => {
+					describe('href', () => {
+						it('should render an anchor element when href is set', () => {
+							component.href = 'https://example.com/';
+
+							Polymer.dom.flush();
+
+							var anchor = component.$$('a');
+
+							expect(anchor).to.not.be.null;
+							expect(anchor.href).to.equal('https://example.com/');
+						});
+
+						it('should render a div element when href is not set', () => {
+							component.href = null;
+
+							Polymer.dom.flush();
+
+							var div = component.$$('div');
+							expect(div).to.not.be.null;
+						});
+					});
+
+					describe('specifiedTabIndex', () => {
+						it('should set the tabindex on the anchor element', () => {
+							component.href = 'https://example.com/';
+							component.specifiedTabIndex = 5;
+
+							Polymer.dom.flush();
+
+							expect(component.$$('a').getAttribute('tabindex')).to.equal('5');
+						});
+
+						it('should set the tabindex on the anchor element', () => {
+							component.specifiedTabIndex = 5;
+
+							Polymer.dom.flush();
+
+							expect(component.$$('div').getAttribute('tabindex')).to.equal('5');
+						});
+					});
+				});
+			});
+		</script>
+	</body>
+</html>

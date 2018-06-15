@@ -7,12 +7,19 @@
 	</head>
 	<body>
 		<script>
-			WCT.loadSuites([
-				'd2l-tile.html?wc-shadydom=true&wc-ce=true',
-				'd2l-tile.html?dom=shadow',
-				'd2l-image-tile.html?wc-shadydom=true&wc-ce=true',
-				'd2l-image-tile.html?dom=shadow'
-			]);
+			var files = [
+				'd2l-tile.html',
+				'd2l-image-tile.html',
+				'd2l-image-tile-base.html'
+			];
+
+			var tests = [];
+			files.forEach(file => {
+				tests.push(file + '?wc-shadydom=true');
+				tests.push(file + '?dom=shadow');
+			});
+
+			WCT.loadSuites(tests);
 		</script>
 	</body>
 </html>

@@ -18,7 +18,7 @@
 				border-color: inherit;
 			}
 		</style>
-		<template is="dom-if" if="href=[[_hasHref(href)]]">
+		<template is="dom-if" if="[[_hasHref(href)]]">
 			<a class="d2l-image-tile-base-link" href$=[[href]] tabindex$=[[specifiedTabIndex]]>
 				<slot name="d2l-image-tile-base-content"></slot>
 			</a>
