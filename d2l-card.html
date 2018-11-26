@@ -112,7 +112,13 @@ Polymer-based web components for card
 				z-index: 2;
 				width: 100%;
 				box-sizing: border-box;
+				pointer-events: none;
 			}
+
+			.d2l-card-footer ::slotted([slot="footer"]) {
+				pointer-events: all;
+			}
+
 			.d2l-card-footer-hidden .d2l-card-footer {
 				@apply --d2l-offscreen;
 				height: auto;
