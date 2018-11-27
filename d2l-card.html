@@ -110,9 +110,18 @@ Polymer-based web components for card
 				flex: none;
 				padding: 1.2rem 0.8rem 0.6rem 0.8rem;
 				z-index: 2;
+				width: 100%;
+				box-sizing: border-box;
+				pointer-events: none;
 			}
+
+			.d2l-card-footer ::slotted([slot="footer"]) {
+				pointer-events: all;
+			}
+
 			.d2l-card-footer-hidden .d2l-card-footer {
 				@apply --d2l-offscreen;
+				box-sizing: content-box;
 				height: auto;
 			}
 			/* P2-shadow */
@@ -283,7 +292,9 @@ Polymer-based web components for card
 				}
 				var container = Polymer.dom(this.root).querySelector('.d2l-card-container');
 				var entry = entries[0];
-				if (entry.contentRect.height === 0 && !container.classList.contains('d2l-card-footer-hidden')) {
+				// firefox has a rounding error when calculating the height of the contentRect with `box-sizing: border-box;`
+				// so check for numbers which are close to 0 as well
+				if (entry.contentRect.height < 1 && !container.classList.contains('d2l-card-footer-hidden')) {
 					fastdom.mutate(function() {
 						container.classList.add('d2l-card-footer-hidden');
 					});
