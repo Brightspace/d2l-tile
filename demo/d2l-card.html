@@ -4,27 +4,44 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 		<title>d2l-card demo</title>
-		<script src="../../webcomponentsjs/webcomponents-lite.js"></script>
-		<link rel="import" href="../../polymer/polymer.html">
-		<link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
-		<link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
-		<link rel="import" href="../../d2l-typography/d2l-typography.html">
-		<link rel="import" href="../../d2l-button/d2l-button.html">
-		<link rel="import" href="../../d2l-button/d2l-button-icon.html">
-		<link rel="import" href="../../d2l-dropdown/d2l-dropdown-more.html">
-		<link rel="import" href="../../d2l-dropdown/d2l-dropdown-content.html">
-		<link rel="import" href="../../d2l-menu/d2l-menu.html">
-		<link rel="import" href="../../d2l-status-indicator/d2l-status-indicator.html">
-		<link rel="import" href="../../d2l-icons/tier1-icons.html">
-		<link rel="import" href="../../d2l-tooltip/d2l-tooltip.html">
-		<link rel="import" href="../d2l-card.html">
-		<link rel="import" href="../d2l-card-content-title.html">
-		<link rel="import" href="../d2l-card-content-meta.html">
-		<link rel="import" href="../d2l-card-footer-link.html">
-		<custom-style>
+		<script src="../../@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
+		<script type="module" src="../../@polymer/polymer/polymer-legacy.js"></script>
+		<script type="module" src="../../@polymer/iron-demo-helpers/demo-pages-shared-styles.js"></script>
+		<script type="module" src="../../@polymer/iron-demo-helpers/demo-snippet.js"></script>
+		<script type="module" src="../../d2l-typography/d2l-typography.js"></script>
+		<script type="module" src="../../d2l-button/d2l-button.js"></script>
+		<script type="module" src="../../d2l-button/d2l-button-icon.js"></script>
+		<script type="module" src="../../d2l-dropdown/d2l-dropdown-more.js"></script>
+		<script type="module" src="../../d2l-dropdown/d2l-dropdown-content.js"></script>
+		<script type="module" src="../../d2l-menu/d2l-menu.js"></script>
+		<script type="module" src="../../d2l-status-indicator/d2l-status-indicator.js"></script>
+		<script type="module" src="../../d2l-icons/tier1-icons.js"></script>
+		<script type="module" src="../../d2l-tooltip/d2l-tooltip.js"></script>
+		<script type="module" src="../d2l-card.js"></script>
+		<script type="module" src="../d2l-card-content-title.js"></script>
+		<script type="module" src="../d2l-card-content-meta.js"></script>
+		<script type="module" src="../d2l-card-footer-link.js"></script>
+		<!-- FIXME(polymer-modulizer):
+		These imperative modules that innerHTML your HTML are
+		a hacky way to be sure that any mixins in included style
+		modules are ready before any elements that reference them are
+		instantiated, otherwise the CSS @apply mixin polyfill won't be
+		able to expand the underlying CSS custom properties.
+		See: https://github.com/Polymer/polymer-modulizer/issues/154
+		-->
+	<script type="module">
+const $_documentContainer = document.createElement('template');
+
+$_documentContainer.innerHTML = `<custom-style>
 			<style is="custom-style" include="demo-pages-shared-styles"></style>
-		</custom-style>
-		<custom-style include="d2l-typography">
+		</custom-style>`;
+
+document.body.appendChild($_documentContainer.content);
+</script>
+		<script type="module">
+const $_documentContainer = document.createElement('template');
+
+$_documentContainer.innerHTML = `<custom-style include="d2l-typography">
 			<style is="custom-style" include="d2l-typography">
 				html {
 					--d2l-button: {
@@ -32,8 +49,14 @@
 					}
 				}
 			</style>
-		</custom-style>
-		<style>
+		</custom-style>`;
+
+document.body.appendChild($_documentContainer.content);
+</script>
+		<script type="module">
+const $_documentContainer = document.createElement('template');
+
+$_documentContainer.innerHTML = `<style>
 			html {
 				font-size: 20px;
 			}
@@ -65,10 +88,16 @@
 			div[slot="footer"] {
 				display: inline-block;
 			}
-		</style>
+		</style>`;
+
+document.body.appendChild($_documentContainer.content);
+</script>
 	</head>
 	<body unresolved class="d2l-typography">
-		<div class="vertical-section-container centered" style="max-width: 800px;">
+		<script type="module">
+const $_documentContainer = document.createElement('template');
+
+$_documentContainer.innerHTML = `<div class="vertical-section-container centered" style="max-width: 800px;">
 
 			<h3>Subtle Card (badges, no-link)</h3>
 
@@ -76,24 +105,24 @@
 				<template>
 					<div class="subtle-demo">
 
-						<d2l-card subtle text="Image Badge" href="https://en.wikipedia.org/wiki/Hydrology" style="width: 240px; height: 280px;">
-							<img slot="header" alt="" style="display: block; width: 100%;" src="https://s.brightspace.com/course-images/images/38e839b1-37fa-470c-8830-b189ce4ae134/tile-high-density-max-size.jpg" />
+						<d2l-card subtle="" text="Image Badge" href="https://en.wikipedia.org/wiki/Hydrology" style="width: 240px; height: 280px;">
+							<img slot="header" alt="" style="display: block; width: 100%;" src="https://s.brightspace.com/course-images/images/38e839b1-37fa-470c-8830-b189ce4ae134/tile-high-density-max-size.jpg">
 							<div slot="badge" class="badge">
 								<img alt="" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Stick_Figure.svg/340px-Stick_Figure.svg.png">
 							</div>
 							<div slot="content" style="text-align: center;">Image Badge</div>
 						</d2l-card>
 
-						<d2l-card subtle text="Status Badge" href="https://en.wikipedia.org/wiki/Hydrology" style="width: 240px; height: 280px;">
-							<img slot="header" alt="" style="display: block; width: 100%;" src="https://s.brightspace.com/course-images/images/38e839b1-37fa-470c-8830-b189ce4ae134/tile-high-density-max-size.jpg" />
+						<d2l-card subtle="" text="Status Badge" href="https://en.wikipedia.org/wiki/Hydrology" style="width: 240px; height: 280px;">
+							<img slot="header" alt="" style="display: block; width: 100%;" src="https://s.brightspace.com/course-images/images/38e839b1-37fa-470c-8830-b189ce4ae134/tile-high-density-max-size.jpg">
 							<div class="badge-status" slot="badge">
 								<d2l-status-indicator text="Success" state="success"></d2l-status-indicator>
 							</div>
 							<div slot="content" style="text-align: center;">Status Badge</div>
 						</d2l-card>
 
-						<d2l-card subtle text="No Link" style="width: 240px; height: 280px;">
-							<img slot="header" alt="" style="display: block; width: 100%;" src="https://s.brightspace.com/course-images/images/38e839b1-37fa-470c-8830-b189ce4ae134/tile-high-density-max-size.jpg" />
+						<d2l-card subtle="" text="No Link" style="width: 240px; height: 280px;">
+							<img slot="header" alt="" style="display: block; width: 100%;" src="https://s.brightspace.com/course-images/images/38e839b1-37fa-470c-8830-b189ce4ae134/tile-high-density-max-size.jpg">
 							<div slot="content" style="text-align: center;">No Link</div>
 						</d2l-card>
 
@@ -107,17 +136,16 @@
 				<template>
 					<div class="subtle-demo">
 
-						<d2l-card subtle text="Hydrology" href="https://en.wikipedia.org/wiki/Hydrology"
-							style="width: 240px; height: 300px;">
-							<img slot="header" alt="" style="display: block; width: 100%;" src="https://s.brightspace.com/course-images/images/38e839b1-37fa-470c-8830-b189ce4ae134/tile-high-density-max-size.jpg" />
-							<d2l-dropdown-more slot="actions" translucent visible-on-ancestor text="Open!">
+						<d2l-card subtle="" text="Hydrology" href="https://en.wikipedia.org/wiki/Hydrology" style="width: 240px; height: 300px;">
+							<img slot="header" alt="" style="display: block; width: 100%;" src="https://s.brightspace.com/course-images/images/38e839b1-37fa-470c-8830-b189ce4ae134/tile-high-density-max-size.jpg">
+							<d2l-dropdown-more slot="actions" translucent="" visible-on-ancestor="" text="Open!">
 									<d2l-dropdown-content>
 										<div>This is where you could put the super cool features for your card!</div><br><div>As with all dropdowns, you can choose between a generic dropdown container, or a menu specific one.</div>
 										<div>This is where you could put the super cool features for your card!</div><br><div>As with all dropdowns, you can choose between a generic dropdown container, or a menu specific one.</div>
 										<div>This is where you could put the super cool features for your card!</div><br><div>As with all dropdowns, you can choose between a generic dropdown container, or a menu specific one.</div>
 									</d2l-dropdown-content>
 							</d2l-dropdown-more>
-							<d2l-button-icon slot="actions" translucent text="unpin" icon="d2l-tier1:pin-filled"></d2l-button-icon>
+							<d2l-button-icon slot="actions" translucent="" text="unpin" icon="d2l-tier1:pin-filled"></d2l-button-icon>
 							<div slot="content"><div style="text-align: center;">Hydrology</div><d2l-card-content-meta>This is some extra meta data that will fill the content slot of the card.</d2l-card-content-meta></div>
 							<div slot="footer">
 								<d2l-card-footer-link id="googleDriveLink1" icon="d2l-tier1:google-drive" text="Google Drive" secondary-text="99+" href="https://www.google.ca/drive/"></d2l-card-footer-link>
@@ -131,13 +159,12 @@
 							</div>
 						</d2l-card>
 
-						<d2l-card subtle text="Grade 2" href="https://en.wikipedia.org/wiki/Second_grade"
-							style="width: 240px; height: 300px;">
-							<img slot="header" alt="" style="display: block; width: 100%;" src="https://s.brightspace.com/course-images/images/e5fd575a-bc14-4a80-89e1-46f349a76178/tile-low-density-max-size.jpg" />
-							<d2l-dropdown-more slot="actions" translucent visible-on-ancestor text="Open!">
+						<d2l-card subtle="" text="Grade 2" href="https://en.wikipedia.org/wiki/Second_grade" style="width: 240px; height: 300px;">
+							<img slot="header" alt="" style="display: block; width: 100%;" src="https://s.brightspace.com/course-images/images/e5fd575a-bc14-4a80-89e1-46f349a76178/tile-low-density-max-size.jpg">
+							<d2l-dropdown-more slot="actions" translucent="" visible-on-ancestor="" text="Open!">
 									<d2l-dropdown-content><div>This is where you could put the super cool features for your card!</div><br><div>As with all dropdowns, you can choose between a generic dropdown container, or a menu specific one.</div></d2l-dropdown-content>
 							</d2l-dropdown-more>
-							<d2l-button-icon slot="actions" translucent text="unpin" icon="d2l-tier1:pin-filled"></d2l-button-icon>
+							<d2l-button-icon slot="actions" translucent="" text="unpin" icon="d2l-tier1:pin-filled"></d2l-button-icon>
 							<div slot="content" style="text-align: center;">Grade 2</div>
 							<div slot="footer">
 								<d2l-card-footer-link id="googleDriveLink2" icon="d2l-tier1:google-drive" text="Google Drive" secondary-text="99+" href="https://www.google.ca/drive/"></d2l-card-footer-link>
@@ -149,13 +176,12 @@
 							</div>
 						</d2l-card>
 
-						<d2l-card subtle text="Painting" href="https://en.wikipedia.org/wiki/Painting"
-							style="width: 240px; height: 300px;">
-							<img slot="header" alt="" style="display: block; width: 100%;" src="https://s.brightspace.com/course-images/images/63b162ab-b582-4bf9-8c1d-1dad04714121/tile-low-density-max-size.jpg" />
-							<d2l-dropdown-more slot="actions" translucent visible-on-ancestor text="Open!">
+						<d2l-card subtle="" text="Painting" href="https://en.wikipedia.org/wiki/Painting" style="width: 240px; height: 300px;">
+							<img slot="header" alt="" style="display: block; width: 100%;" src="https://s.brightspace.com/course-images/images/63b162ab-b582-4bf9-8c1d-1dad04714121/tile-low-density-max-size.jpg">
+							<d2l-dropdown-more slot="actions" translucent="" visible-on-ancestor="" text="Open!">
 									<d2l-dropdown-content><div>This is where you could put the super cool features for your card!</div><br><div>As with all dropdowns, you can choose between a generic dropdown container, or a menu specific one.</div></d2l-dropdown-content>
 							</d2l-dropdown-more>
-							<d2l-button-icon slot="actions" translucent text="unpin" icon="d2l-tier1:pin-filled"></d2l-button-icon>
+							<d2l-button-icon slot="actions" translucent="" text="unpin" icon="d2l-tier1:pin-filled"></d2l-button-icon>
 							<div slot="content" style="text-align: center;">Painting</div>
 							<d2l-button slot="footer" style="width: 100%;">Shiny Button</d2l-button>
 						</d2l-card>
@@ -170,7 +196,7 @@
 				<template>
 
 					<d2l-card text="Image Badge" href="https://en.wikipedia.org/wiki/Hydrology" style="width: 240px; height: 280px;">
-						<img slot="header" alt="" style="display: block; width: 100%;" src="https://s.brightspace.com/course-images/images/38e839b1-37fa-470c-8830-b189ce4ae134/tile-high-density-max-size.jpg" />
+						<img slot="header" alt="" style="display: block; width: 100%;" src="https://s.brightspace.com/course-images/images/38e839b1-37fa-470c-8830-b189ce4ae134/tile-high-density-max-size.jpg">
 						<div slot="badge" class="badge">
 							<img alt="" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Stick_Figure.svg/340px-Stick_Figure.svg.png">
 						</div>
@@ -178,7 +204,7 @@
 					</d2l-card>
 
 					<d2l-card text="Status Badge" href="https://en.wikipedia.org/wiki/Hydrology" style="width: 240px; height: 280px;">
-						<img slot="header" alt="" style="display: block; width: 100%;" src="https://s.brightspace.com/course-images/images/38e839b1-37fa-470c-8830-b189ce4ae134/tile-high-density-max-size.jpg" />
+						<img slot="header" alt="" style="display: block; width: 100%;" src="https://s.brightspace.com/course-images/images/38e839b1-37fa-470c-8830-b189ce4ae134/tile-high-density-max-size.jpg">
 						<div class="badge-status" slot="badge">
 							<d2l-status-indicator text="Success" state="success"></d2l-status-indicator>
 						</div>
@@ -186,7 +212,7 @@
 					</d2l-card>
 
 					<d2l-card text="No Link" style="width: 240px; height: 280px;">
-						<img slot="header" alt="" style="display: block; width: 100%;" src="https://s.brightspace.com/course-images/images/38e839b1-37fa-470c-8830-b189ce4ae134/tile-high-density-max-size.jpg" />
+						<img slot="header" alt="" style="display: block; width: 100%;" src="https://s.brightspace.com/course-images/images/38e839b1-37fa-470c-8830-b189ce4ae134/tile-high-density-max-size.jpg">
 						<div slot="content" style="text-align: center;">No Link</div>
 					</d2l-card>
 
@@ -198,17 +224,16 @@
 			<demo-snippet>
 				<template>
 
-					<d2l-card text="Hydrology" href="https://en.wikipedia.org/wiki/Hydrology"
-						style="width: 240px; height: 300px;">
-						<img slot="header" alt="" style="display: block; width: 100%;" src="https://s.brightspace.com/course-images/images/38e839b1-37fa-470c-8830-b189ce4ae134/tile-high-density-max-size.jpg" />
-						<d2l-dropdown-more slot="actions" translucent visible-on-ancestor text="Open!">
+					<d2l-card text="Hydrology" href="https://en.wikipedia.org/wiki/Hydrology" style="width: 240px; height: 300px;">
+						<img slot="header" alt="" style="display: block; width: 100%;" src="https://s.brightspace.com/course-images/images/38e839b1-37fa-470c-8830-b189ce4ae134/tile-high-density-max-size.jpg">
+						<d2l-dropdown-more slot="actions" translucent="" visible-on-ancestor="" text="Open!">
 								<d2l-dropdown-content>
 									<div>This is where you could put the super cool features for your card!</div><br><div>As with all dropdowns, you can choose between a generic dropdown container, or a menu specific one.</div>
 									<div>This is where you could put the super cool features for your card!</div><br><div>As with all dropdowns, you can choose between a generic dropdown container, or a menu specific one.</div>
 									<div>This is where you could put the super cool features for your card!</div><br><div>As with all dropdowns, you can choose between a generic dropdown container, or a menu specific one.</div>
 								</d2l-dropdown-content>
 						</d2l-dropdown-more>
-						<d2l-button-icon slot="actions" translucent text="unpin" icon="d2l-tier1:pin-filled"></d2l-button-icon>
+						<d2l-button-icon slot="actions" translucent="" text="unpin" icon="d2l-tier1:pin-filled"></d2l-button-icon>
 						<div slot="content"><div style="text-align: center;">Hydrology</div><d2l-card-content-meta>This is some extra meta data that will fill the content slot of the card.</d2l-card-content-meta></div>
 						<div slot="footer">
 							<d2l-card-footer-link id="googleDriveLink3" icon="d2l-tier1:google-drive" text="Google Drive" secondary-text="99+" href="https://www.google.ca/drive/"></d2l-card-footer-link>
@@ -222,13 +247,12 @@
 						</div>
 					</d2l-card>
 
-					<d2l-card text="Grade 2" href="https://en.wikipedia.org/wiki/Second_grade"
-						style="width: 240px; height: 300px;">
-						<img slot="header" alt="" style="display: block; width: 100%;" src="https://s.brightspace.com/course-images/images/e5fd575a-bc14-4a80-89e1-46f349a76178/tile-low-density-max-size.jpg" />
-						<d2l-dropdown-more slot="actions" translucent visible-on-ancestor text="Open!">
+					<d2l-card text="Grade 2" href="https://en.wikipedia.org/wiki/Second_grade" style="width: 240px; height: 300px;">
+						<img slot="header" alt="" style="display: block; width: 100%;" src="https://s.brightspace.com/course-images/images/e5fd575a-bc14-4a80-89e1-46f349a76178/tile-low-density-max-size.jpg">
+						<d2l-dropdown-more slot="actions" translucent="" visible-on-ancestor="" text="Open!">
 								<d2l-dropdown-content><div>This is where you could put the super cool features for your card!</div><br><div>As with all dropdowns, you can choose between a generic dropdown container, or a menu specific one.</div></d2l-dropdown-content>
 						</d2l-dropdown-more>
-						<d2l-button-icon slot="actions" translucent text="unpin" icon="d2l-tier1:pin-filled"></d2l-button-icon>
+						<d2l-button-icon slot="actions" translucent="" text="unpin" icon="d2l-tier1:pin-filled"></d2l-button-icon>
 						<div slot="content" style="text-align: center;">Grade 2</div>
 						<div slot="footer">
 							<d2l-card-footer-link id="googleDriveLink4" icon="d2l-tier1:google-drive" text="Google Drive" secondary-text="99+" href="https://www.google.ca/drive/"></d2l-card-footer-link>
@@ -240,13 +264,12 @@
 						</div>
 					</d2l-card>
 
-					<d2l-card text="Painting" href="https://en.wikipedia.org/wiki/Painting"
-						style="width: 240px; height: 300px;">
-						<img slot="header" alt="" style="display: block; width: 100%;" src="https://s.brightspace.com/course-images/images/63b162ab-b582-4bf9-8c1d-1dad04714121/tile-low-density-max-size.jpg" />
-						<d2l-dropdown-more slot="actions" translucent visible-on-ancestor text="Open!">
+					<d2l-card text="Painting" href="https://en.wikipedia.org/wiki/Painting" style="width: 240px; height: 300px;">
+						<img slot="header" alt="" style="display: block; width: 100%;" src="https://s.brightspace.com/course-images/images/63b162ab-b582-4bf9-8c1d-1dad04714121/tile-low-density-max-size.jpg">
+						<d2l-dropdown-more slot="actions" translucent="" visible-on-ancestor="" text="Open!">
 								<d2l-dropdown-content><div>This is where you could put the super cool features for your card!</div><br><div>As with all dropdowns, you can choose between a generic dropdown container, or a menu specific one.</div></d2l-dropdown-content>
 						</d2l-dropdown-more>
-						<d2l-button-icon slot="actions" translucent text="unpin" icon="d2l-tier1:pin-filled"></d2l-button-icon>
+						<d2l-button-icon slot="actions" translucent="" text="unpin" icon="d2l-tier1:pin-filled"></d2l-button-icon>
 						<div slot="content" style="text-align: center;">Painting</div>
 						<div slot="footer">Secondary Actions</div>
 					</d2l-card>
@@ -254,6 +277,9 @@
 				</template>
 			</demo-snippet>
 
-		</div>
+		</div>`;
+
+document.body.appendChild($_documentContainer.content);
+</script>
 	</body>
 </html>

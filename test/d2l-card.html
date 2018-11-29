@@ -4,11 +4,12 @@
 		<meta charset="UTF-8">
 		<title>d2l-card tests</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-		<script src="../../webcomponentsjs/webcomponents-lite.js"></script>
-		<script src="../../web-component-tester/browser.js"></script>
-		<link rel="import" href="../../d2l-polymer-behaviors/d2l-dom-focus.html">
-		<link rel="import" href="../d2l-card.html">
-		<link rel="import" href="../d2l-card-content-meta.html">
+		<script src="../../@babel/polyfill/browser.js"></script>
+		<script src="../../@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
+		<script src="../../wct-browser-legacy/browser.js"></script>
+		<script type="module" src="../../d2l-polymer-behaviors/d2l-dom-focus.js"></script>
+		<script type="module" src="../d2l-card.js"></script>
+		<script type="module" src="../d2l-card-content-meta.js"></script>
 	</head>
 	<body>
 
@@ -36,74 +37,77 @@
 			</template>
 		</test-fixture>
 
-		<script>
-			describe('<d2l-card>', function() {
+		<script type="module">
+import '../../d2l-polymer-behaviors/d2l-dom-focus.js';
+import '../d2l-card.js';
+import '../d2l-card-content-meta.js';
+describe('<d2l-card>', function() {
 
-				var card;
+	var card;
 
-				var raf = function(cb) {
-					fastdom.measure(function() {
-						fastdom.mutate(function() {
-							requestAnimationFrame(function() {
-								requestAnimationFrame(function() {
-									requestAnimationFrame(function() {
-										cb();
-									});
-								});
-							});
+	var raf = function(cb) {
+		fastdom.measure(function() {
+			fastdom.mutate(function() {
+				requestAnimationFrame(function() {
+					requestAnimationFrame(function() {
+						requestAnimationFrame(function() {
+							cb();
 						});
 					});
-				};
-
-				describe('card', function() {
-
-					beforeEach(function(done) {
-						card = fixture('card');
-						raf(done);
-					});
-
-					it('defines anchor element with the specified href and accessible text', function() {
-						var link = card._getContainer().querySelector('a.d2l-focusable');
-						expect(link).to.not.equal(null);
-						expect(link.getAttribute('href')).to.equal('https://google.com');
-						expect(link.textContent).to.equal('accessible title');
-					});
-
-					it('applies proper spacing when footer is not present', function() {
-						var container = card._getContainer();
-						expect(container.classList.contains('d2l-card-footer-hidden')).to.equal(true);
-					});
-
-					it('does not show active card style when link is not focused', function() {
-						expect(card.hasAttribute('active')).to.equal(false);
-					});
-
-					it('focuses on main link when card is focused', function() {
-						var link = card._getContainer().querySelector('a.d2l-focusable');
-						card.focus();
-						expect(D2L.Dom.Focus.getComposedActiveElement()).to.equal(link);
-					});
-
 				});
-
-				describe('card with footer', function() {
-
-					beforeEach(function(done) {
-						card = fixture('cardWithFooter');
-						raf(done);
-					});
-
-					it('applies proper spacing when footer is not present', function(done) {
-						var container = card._getContainer();
-						raf(function() {
-							expect(container.classList.contains('d2l-card-footer-hidden')).to.equal(false);
-							done();
-						});
-					});
-
-				});
-
 			});
-		</script>
+		});
+	};
+
+	describe('card', function() {
+
+		beforeEach(function(done) {
+			card = fixture('card');
+			raf(done);
+		});
+
+		it('defines anchor element with the specified href and accessible text', function() {
+			var link = card._getContainer().querySelector('a.d2l-focusable');
+			expect(link).to.not.equal(null);
+			expect(link.getAttribute('href')).to.equal('https://google.com');
+			expect(link.textContent).to.equal('accessible title');
+		});
+
+		it('applies proper spacing when footer is not present', function() {
+			var container = card._getContainer();
+			expect(container.classList.contains('d2l-card-footer-hidden')).to.equal(true);
+		});
+
+		it('does not show active card style when link is not focused', function() {
+			expect(card.hasAttribute('active')).to.equal(false);
+		});
+
+		it('focuses on main link when card is focused', function() {
+			var link = card._getContainer().querySelector('a.d2l-focusable');
+			card.focus();
+			expect(D2L.Dom.Focus.getComposedActiveElement()).to.equal(link);
+		});
+
+	});
+
+	describe('card with footer', function() {
+
+		beforeEach(function(done) {
+			card = fixture('cardWithFooter');
+			raf(done);
+		});
+
+		it('applies proper spacing when footer is not present', function(done) {
+			var container = card._getContainer();
+			raf(function() {
+				expect(container.classList.contains('d2l-card-footer-hidden')).to.equal(false);
+				done();
+			});
+		});
+
+	});
+
+});
+</script>
 	</body>
 </html>

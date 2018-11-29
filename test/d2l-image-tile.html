@@ -4,9 +4,10 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 		<title>d2l-image-tile tests</title>
-		<script src="../../webcomponentsjs/webcomponents-lite.js"></script>
-		<script src="../../web-component-tester/browser.js"></script>
-		<link rel="import" href="../d2l-image-tile.html">
+		<script src="../../@babel/polyfill/browser.js"></script>
+		<script src="../../@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
+		<script src="../../wct-browser-legacy/browser.js"></script>
+		<script type="module" src="../d2l-image-tile.js"></script>
 	</head>
 	<body>
 		<test-fixture id="basic">
@@ -14,16 +15,17 @@
 				<d2l-image-tile></d2l-image-tile>
 			</template>
 		</test-fixture>
-		<script>
-			describe('d2l-image-tile', function() {
-				var elem;
-				describe('basic', function() {
-					it('should instantiate the element', function() {
-						elem = fixture('basic');
-						expect(elem.is).to.equal('d2l-image-tile');
-					});
-				});
-			});
-		</script>
+		<script type="module">
+import '../d2l-image-tile.js';
+describe('d2l-image-tile', function() {
+	var elem;
+	describe('basic', function() {
+		it('should instantiate the element', function() {
+			elem = fixture('basic');
+			expect(elem.is).to.equal('d2l-image-tile');
+		});
+	});
+});
+</script>
 	</body>
 </html>

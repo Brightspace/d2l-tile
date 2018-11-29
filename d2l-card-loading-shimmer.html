@@ -1,5 +1,5 @@
-<link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="../d2l-colors/d2l-colors.html">
+<script type="module" src="../@polymer/polymer/polymer-legacy.js"></script>
+<script type="module" src="../d2l-colors/d2l-colors.js"></script>
 
 <!--
 `d2l-card-loading-shimmer` is a Polymer-based web component for implementing a loading shimmer for a card.
@@ -43,15 +43,18 @@
 			<slot></slot>
 		</div>
 	</template>
-	<script>
-	Polymer({
-		is: 'd2l-card-loading-shimmer',
-		properties: {
-			loading: {
-				type: Boolean,
-				value: false
-			}
+	<script type="module">
+import '../@polymer/polymer/polymer-legacy.js';
+import '../d2l-colors/d2l-colors.js';
+import { Polymer } from '../@polymer/polymer/lib/legacy/polymer-fn.js';
+Polymer({
+	is: 'd2l-card-loading-shimmer',
+	properties: {
+		loading: {
+			type: Boolean,
+			value: false
 		}
-	});
-	</script>
+	}
+});
+</script>
 </dom-module>

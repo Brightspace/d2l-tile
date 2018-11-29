@@ -1,16 +1,27 @@
-<link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="../d2l-icons/tier1-icons.html">
-<link rel="import" href="../d2l-dropdown/d2l-dropdown.html">
-<link rel="import" href="../d2l-dropdown/d2l-dropdown-more.html">
-<link rel="import" href="../d2l-colors/d2l-colors.html">
-<link rel="import" href="./d2l-tile-behavior.html">
-<link rel="import" href="./d2l-image-tile-base.html">
-<!--
+/**
 `d2l-image-tile` (Deprecated, use `d2l-card` instead.)
 @demo demo/d2l-image-tile.html
--->
-<dom-module id="d2l-image-tile">
-	<template strip-whitespace>
+*/
+/*
+  FIXME(polymer-modulizer): the above comments were extracted
+  from HTML and may be out of place here. Review them and
+  then delete this comment!
+*/
+import '../@polymer/polymer/polymer-legacy.js';
+
+import '../d2l-icons/tier1-icons.js';
+import '../d2l-dropdown/d2l-dropdown.js';
+import '../d2l-dropdown/d2l-dropdown-more.js';
+import '../d2l-colors/d2l-colors.js';
+import './d2l-tile-behavior.js';
+import './d2l-image-tile-base.js';
+import { Polymer } from '../@polymer/polymer/lib/legacy/polymer-fn.js';
+import { afterNextRender } from '../@polymer/polymer/lib/utils/render-status.js';
+import { dom } from '../@polymer/polymer/lib/legacy/polymer.dom.js';
+const $_documentContainer = document.createElement('template');
+
+$_documentContainer.innerHTML = `<dom-module id="d2l-image-tile">
+	<template strip-whitespace="">
 		<style>
 			[hidden] {
 				display: none;
@@ -260,15 +271,8 @@
 		</style>
 		<d2l-image-tile-base href="[[href]]" specified-tab-index="[[specifiedTabIndex]]">
 			<div class="d2l-image-tile-menu-area" slot="d2l-image-tile-base-menu-area">
-				<d2l-dropdown-more
-					on-tap="_onDropdownClick"
-					id="dropdown-more"
-					text="[[dropdownLabel]]"
-					translucent
-					hidden$="[[!_shouldShowMenu(_showMenu, loading)]]">
-					<slot name="d2l-image-tile-dropdown"
-						id="dropdown-slot"
-						on-slot-changed="_handleSlotChange">
+				<d2l-dropdown-more on-tap="_onDropdownClick" id="dropdown-more" text="[[dropdownLabel]]" translucent="" hidden$="[[!_shouldShowMenu(_showMenu, loading)]]">
+					<slot name="d2l-image-tile-dropdown" id="dropdown-slot" on-slot-changed="_handleSlotChange">
 					</slot>
 				</d2l-dropdown-more>
 				<div class="d2l-image-tile-menu-adjacent-container">
@@ -284,10 +288,7 @@
 						</template>
 						<template is="dom-if" if="[[!loading]]">
 							<slot name="d2l-image-tile-image">
-								<div
-									class="d2l-image-tile-image"
-									style$="[[_getImageStyle(imgUrl)]]"
-								></div>
+								<div class="d2l-image-tile-image" style$="[[_getImageStyle(imgUrl)]]"></div>
 							</slot>
 						</template>
 					</div>
@@ -298,124 +299,125 @@
 			</div>
 		</d2l-image-tile-base>
 	</template>
-	<script>
-	Polymer({
-		is: 'd2l-image-tile',
-		behaviors: [D2L.PolymerBehaviors.TileBehavior],
-		properties: {
-			/**
-			 * Gets or sets the [aria-label](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-label_attribute)
-			 * attribute for the dropdown "more" button.
-			 */
-			dropdownLabel: String,
-			/**
-			 * A URL pointing at the path to the image to show in the tile.
-			 */
-			imgUrl: String,
-			/**
-			 * When true, shows a '...' "more" menu that opens a dropdown menu
-			 * comprised of the contents of the `d2l-image-tile-menu` slot.
-			 */
-			_showMenu: {
-				type: Boolean,
-				value: false
-			},
-			/**
-			 * A space-separated string listing the hover effect to be applied
-			 * to the tile.
-			 */
-			hoverEffect: {
-				type: String,
-				value: '',
-				reflectToAttribute: true
-			},
-			/**
-			 * When true, will put the tile into a "loading" state, where the
-			 * image is replaced with an animated loading gradient.
-			 */
-			loading: {
-				type: Boolean,
-				value: false,
-				reflectToAttribute: true
-			},
-			/**
-			 * A boolean reflecting the focus state of the element.
-			 */
-			focused: {
-				type: Boolean,
-				value: false,
-				reflectToAttribute: true
-			},
-			/**
-			 * Overrides the default behavior of always showing the ... button on mobile
-			 */
-			noMobileMoreButton: {
-				type: Boolean,
-				reflectToAttribute: true
-			},
-			_slotObserver: Object,
-			/**
-			 * A location to go when you click on the tile
-			 */
-			href: {
-				type: String,
-				value: null
-			},
-			/**
-			 * tabindex within the tile
-			**/
-			specifiedTabIndex: {
-				type: String,
-				value: '0'
-			}
+	
+</dom-module>`;
+
+document.head.appendChild($_documentContainer.content);
+Polymer({
+	is: 'd2l-image-tile',
+	behaviors: [D2L.PolymerBehaviors.TileBehavior],
+	properties: {
+		/**
+		 * Gets or sets the [aria-label](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-label_attribute)
+		 * attribute for the dropdown "more" button.
+		 */
+		dropdownLabel: String,
+		/**
+		 * A URL pointing at the path to the image to show in the tile.
+		 */
+		imgUrl: String,
+		/**
+		 * When true, shows a '...' "more" menu that opens a dropdown menu
+		 * comprised of the contents of the `d2l-image-tile-menu` slot.
+		 */
+		_showMenu: {
+			type: Boolean,
+			value: false
 		},
-		listeners: {
-			'focus': '_onFocus',
-			'blur': '_onBlur'
+		/**
+		 * A space-separated string listing the hover effect to be applied
+		 * to the tile.
+		 */
+		hoverEffect: {
+			type: String,
+			value: '',
+			reflectToAttribute: true
 		},
-		attached: function() {
-			Polymer.RenderStatus.afterNextRender(this, function() {
-				this.addEventListener('focus', this._onFocus, true);
-				this.addEventListener('blur', this._onBlur, true);
-				this._handleSlotChanged();
-				this._slotObserver = Polymer.dom(this.$['dropdown-slot']).observeNodes(this._handleSlotChanged.bind(this));
-			}.bind(this));
+		/**
+		 * When true, will put the tile into a "loading" state, where the
+		 * image is replaced with an animated loading gradient.
+		 */
+		loading: {
+			type: Boolean,
+			value: false,
+			reflectToAttribute: true
 		},
-		detached: function() {
-			this.removeEventListener('focus', this._onFocus);
-			this.removeEventListener('blur', this._onBlur);
-			if (this._slotObserver) {
-				Polymer.dom(this.$['dropdown-slot']).unobserveNodes(this._slotObserver);
-			}
+		/**
+		 * A boolean reflecting the focus state of the element.
+		 */
+		focused: {
+			type: Boolean,
+			value: false,
+			reflectToAttribute: true
 		},
-		_handleSlotChanged: function() {
-			this._showMenu = this._isDropdownSlotFilled();
+		/**
+		 * Overrides the default behavior of always showing the ... button on mobile
+		 */
+		noMobileMoreButton: {
+			type: Boolean,
+			reflectToAttribute: true
 		},
-		_isDropdownSlotFilled: function() {
-			var slot = this.$['dropdown-slot'];
-			if (!slot) {
-				return false;
-			}
-			var slotElements = Polymer.dom(slot).getDistributedNodes();
-			return slotElements && slotElements.length > 0;
+		_slotObserver: Object,
+		/**
+		 * A location to go when you click on the tile
+		 */
+		href: {
+			type: String,
+			value: null
 		},
-		_onDropdownClick: function(e) {
-			e.stopPropagation();
-		},
-		_getImageStyle: function(imgUrl) {
-			return this.imgUrl ?
-				'background: url(' + imgUrl + '); background-size: cover; background-position: center;' :
-				'display: none;';
-		},
-		_shouldShowMenu: function(showMenu, loading) {
-			return showMenu && !loading;
-		},
-		_onFocus: function() {
-			this.focused = true;
-		},
-		_onBlur: function() {
-			this.focused = false;
+		/**
+		 * tabindex within the tile
+		**/
+		specifiedTabIndex: {
+			type: String,
+			value: '0'
 		}
-	});
-	</script>
-</dom-module>
+	},
+	listeners: {
+		'focus': '_onFocus',
+		'blur': '_onBlur'
+	},
+	attached: function() {
+		afterNextRender(this, function() {
+			this.addEventListener('focus', this._onFocus, true);
+			this.addEventListener('blur', this._onBlur, true);
+			this._handleSlotChanged();
+			this._slotObserver = dom(this.$['dropdown-slot']).observeNodes(this._handleSlotChanged.bind(this));
+		}.bind(this));
+	},
+	detached: function() {
+		this.removeEventListener('focus', this._onFocus);
+		this.removeEventListener('blur', this._onBlur);
+		if (this._slotObserver) {
+			dom(this.$['dropdown-slot']).unobserveNodes(this._slotObserver);
+		}
+	},
+	_handleSlotChanged: function() {
+		this._showMenu = this._isDropdownSlotFilled();
+	},
+	_isDropdownSlotFilled: function() {
+		var slot = this.$['dropdown-slot'];
+		if (!slot) {
+			return false;
+		}
+		var slotElements = dom(slot).getDistributedNodes();
+		return slotElements && slotElements.length > 0;
+	},
+	_onDropdownClick: function(e) {
+		e.stopPropagation();
+	},
+	_getImageStyle: function(imgUrl) {
+		return this.imgUrl ?
+			'background: url(' + imgUrl + '); background-size: cover; background-position: center;' :
+			'display: none;';
+	},
+	_shouldShowMenu: function(showMenu, loading) {
+		return showMenu && !loading;
+	},
+	_onFocus: function() {
+		this.focused = true;
+	},
+	_onBlur: function() {
+		this.focused = false;
+	}
+});
