@@ -9,6 +9,7 @@
 		<link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
 		<link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
 		<link rel="import" href="../../d2l-typography/d2l-typography.html">
+		<link rel="import" href="../../d2l-button/d2l-button.html">
 		<link rel="import" href="../../d2l-button/d2l-button-icon.html">
 		<link rel="import" href="../../d2l-dropdown/d2l-dropdown-more.html">
 		<link rel="import" href="../../d2l-dropdown/d2l-dropdown-content.html">
@@ -24,11 +25,20 @@
 			<style is="custom-style" include="demo-pages-shared-styles"></style>
 		</custom-style>
 		<custom-style include="d2l-typography">
-			<style is="custom-style" include="d2l-typography"></style>
+			<style is="custom-style" include="d2l-typography">
+				html {
+					--d2l-button: {
+						width: 100%;
+					}
+				}
+			</style>
 		</custom-style>
 		<style>
 			html {
 				font-size: 20px;
+			}
+			d2l-card {
+				vertical-align: top;
 			}
 			.subtle-demo {
 				background-color: #f6f7f8;
@@ -41,9 +51,10 @@
 			.badge > img {
 				object-fit: cover;
 				object-position: center;
-				height: 100px;
+				height: 70px;
+				background-color: white;
 				border-radius: 6px;
-				border: 1px solid white;
+				border: 1px solid #565a5c;
 			}
 			.badge-status {
 				background-color: white;
@@ -51,110 +62,46 @@
 				border-radius: 0.6rem;
 				display: inline-block;
 			}
+			div[slot="footer"] {
+				display: inline-block;
+			}
 		</style>
 	</head>
 	<body unresolved class="d2l-typography">
 		<div class="vertical-section-container centered" style="max-width: 800px;">
 
-			<h3>Card (subtle)</h3>
+			<h3>Subtle Card (badges, no-link)</h3>
 
 			<demo-snippet>
 				<template>
 					<div class="subtle-demo">
-						<d2l-card subtle text="Jovian" href="https://en.wikipedia.org/wiki/Jupiter"
-							style="width: 300px; height: 500px;">
-							<img slot="header" alt="" style="display: block; width: 100%; height: 150px;" src="https://www.nasa.gov/sites/default/files/thumbnails/image/pia21970-opt.jpg" />
-							<d2l-dropdown-more slot="actions" translucent visible-on-ancestor text="Open!">
-								<d2l-dropdown-content>Some dropdown stuffs...</d2l-dropdown-content>
-							</d2l-dropdown-more>
-							<d2l-button-icon slot="actions" translucent text="unpin" icon="d2l-tier1:pin-filled"></d2l-button-icon>
-							<div slot="content">
-								<div style="text-align: center;">Jupiter</div>
-								<d2l-card-content-meta>
-									<div>Gas Giant</div>
-									<div>Orbital Period: 11.86yr</div>
-									<div>Orbital Speed: 13.07km/s</div>
-									<div>Known Satellites: 79</div>
-									<div>Volume: 1321 Earths</div>
-									<div>Mass: 317.8 Earths</div>
-									<div>Surface Temp: 165-112K</div>
-								</d2l-card-content-meta>
-							</div>
+
+						<d2l-card subtle text="Image Badge" href="https://en.wikipedia.org/wiki/Hydrology" style="width: 240px; height: 280px;">
+							<img slot="header" alt="" style="display: block; width: 100%;" src="https://s.brightspace.com/course-images/images/38e839b1-37fa-470c-8830-b189ce4ae134/tile-high-density-max-size.jpg" />
 							<div slot="badge" class="badge">
-								<img alt="" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Galileo.arp.300pix.jpg/195px-Galileo.arp.300pix.jpg">
+								<img alt="" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Stick_Figure.svg/340px-Stick_Figure.svg.png">
 							</div>
-
+							<div slot="content" style="text-align: center;">Image Badge</div>
 						</d2l-card>
-					</div>
-				</template>
-			</demo-snippet>
 
-			<h3>Card (subtle, status indicator badge)</h3>
-
-			<demo-snippet>
-				<template>
-					<div class="subtle-demo">
-						<d2l-card subtle text="Jovian" href="https://en.wikipedia.org/wiki/Jupiter"
-							style="width: 300px; height: 500px;">
-							<img slot="header" alt="" style="display: block; width: 100%; height: 150px;" src="https://www.nasa.gov/sites/default/files/thumbnails/image/pia21970-opt.jpg" />
-							<d2l-dropdown-more slot="actions" translucent visible-on-ancestor text="Open!">
-								<d2l-dropdown-content>Some dropdown stuffs...</d2l-dropdown-content>
-							</d2l-dropdown-more>
-							<d2l-button-icon slot="actions" translucent text="unpin" icon="d2l-tier1:pin-filled"></d2l-button-icon>
-							<div slot="content">
-								<div>Jupiter</div>
-								<d2l-card-content-meta>
-									<div>Gas Giant</div>
-									<div>Orbital Period: 11.86yr</div>
-									<div>Orbital Speed: 13.07km/s</div>
-									<div>Known Satellites: 79</div>
-									<div>Volume: 1321 Earths</div>
-									<div>Mass: 317.8 Earths</div>
-									<div>Surface Temp: 165-112K</div>
-								</d2l-card-content-meta>
-							</div>
+						<d2l-card subtle text="Status Badge" href="https://en.wikipedia.org/wiki/Hydrology" style="width: 240px; height: 280px;">
+							<img slot="header" alt="" style="display: block; width: 100%;" src="https://s.brightspace.com/course-images/images/38e839b1-37fa-470c-8830-b189ce4ae134/tile-high-density-max-size.jpg" />
 							<div class="badge-status" slot="badge">
 								<d2l-status-indicator text="Success" state="success"></d2l-status-indicator>
 							</div>
-							<div slot="footer">Secondary Actions</div>
+							<div slot="content" style="text-align: center;">Status Badge</div>
 						</d2l-card>
+
+						<d2l-card subtle text="No Link" style="width: 240px; height: 280px;">
+							<img slot="header" alt="" style="display: block; width: 100%;" src="https://s.brightspace.com/course-images/images/38e839b1-37fa-470c-8830-b189ce4ae134/tile-high-density-max-size.jpg" />
+							<div slot="content" style="text-align: center;">No Link</div>
+						</d2l-card>
+
 					</div>
 				</template>
 			</demo-snippet>
 
-			<h3>Card (subtle, no link)</h3>
-
-			<demo-snippet>
-				<template>
-					<div class="subtle-demo">
-						<d2l-card subtle text="Jovian" style="width: 300px; height: 500px;">
-							<img slot="header" alt="" style="display: block; width: 100%; height: 150px;" src="https://www.nasa.gov/sites/default/files/thumbnails/image/pia21970-opt.jpg" />
-							<d2l-dropdown-more slot="actions" translucent visible-on-ancestor text="Open!">
-								<d2l-dropdown-content>Some dropdown stuffs...</d2l-dropdown-content>
-							</d2l-dropdown-more>
-							<d2l-button-icon slot="actions" translucent text="unpin" icon="d2l-tier1:pin-filled"></d2l-button-icon>
-							<div slot="content">
-								<d2l-card-content-title>Jupiter</d2l-card-content-title>
-								<d2l-card-content-meta>
-									<div>Gas Giant</div>
-									<div>Orbital Period: 11.86yr</div>
-									<div>Orbital Speed: 13.07km/s</div>
-									<div>Known Satellites: 79</div>
-									<div>Volume: 1321 Earths</div>
-									<div>Mass: 317.8 Earths</div>
-									<div>Surface Temp: 165-112K</div>
-								</d2l-card-content-meta>
-							</div>
-							<div slot="badge" class="badge">
-								<img alt="" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Galileo.arp.300pix.jpg/195px-Galileo.arp.300pix.jpg">
-							</div>
-							<div slot="footer">Secondary Actions</div>
-						</d2l-card>
-					</div>
-				</template>
-			</demo-snippet>
-
-			<h3>Card (subtle, side-by-side)</h3>
+			<h3>Subtle Card (header actions, meta-content, footer links)</h3>
 
 			<demo-snippet>
 				<template>
@@ -162,9 +109,7 @@
 
 						<d2l-card subtle text="Hydrology" href="https://en.wikipedia.org/wiki/Hydrology"
 							style="width: 240px; height: 300px;">
-
 							<img slot="header" alt="" style="display: block; width: 100%;" src="https://s.brightspace.com/course-images/images/38e839b1-37fa-470c-8830-b189ce4ae134/tile-high-density-max-size.jpg" />
-
 							<d2l-dropdown-more slot="actions" translucent visible-on-ancestor text="Open!">
 									<d2l-dropdown-content>
 										<div>This is where you could put the super cool features for your card!</div><br><div>As with all dropdowns, you can choose between a generic dropdown container, or a menu specific one.</div>
@@ -173,9 +118,7 @@
 									</d2l-dropdown-content>
 							</d2l-dropdown-more>
 							<d2l-button-icon slot="actions" translucent text="unpin" icon="d2l-tier1:pin-filled"></d2l-button-icon>
-
 							<div slot="content"><div style="text-align: center;">Hydrology</div><d2l-card-content-meta>This is some extra meta data that will fill the content slot of the card.</d2l-card-content-meta></div>
-
 							<div slot="footer">
 								<d2l-card-footer-link id="googleDriveLink1" icon="d2l-tier1:google-drive" text="Google Drive" secondary-text="99+" href="https://www.google.ca/drive/"></d2l-card-footer-link>
 								<d2l-tooltip for="googleDriveLink1">Go to Google Drive</d2l-tooltip>
@@ -186,7 +129,6 @@
 								<d2l-card-footer-link id="assignmentsLink1" icon="d2l-tier1:assignments" text="Assignments" secondary-text="3"></d2l-card-footer-link>
 								<d2l-tooltip position="top" style="width: 100%;" for="assignmentsLink1">You have 3 assignments due tomorrow.</d2l-tooltip>
 							</div>
-
 						</d2l-card>
 
 						<d2l-card subtle text="Grade 2" href="https://en.wikipedia.org/wiki/Second_grade"
@@ -196,7 +138,7 @@
 									<d2l-dropdown-content><div>This is where you could put the super cool features for your card!</div><br><div>As with all dropdowns, you can choose between a generic dropdown container, or a menu specific one.</div></d2l-dropdown-content>
 							</d2l-dropdown-more>
 							<d2l-button-icon slot="actions" translucent text="unpin" icon="d2l-tier1:pin-filled"></d2l-button-icon>
-							<div slot="content"><div style="text-align: center;">Grade 2</div></div>
+							<div slot="content" style="text-align: center;">Grade 2</div>
 							<div slot="footer">
 								<d2l-card-footer-link id="googleDriveLink2" icon="d2l-tier1:google-drive" text="Google Drive" secondary-text="99+" href="https://www.google.ca/drive/"></d2l-card-footer-link>
 								<d2l-tooltip for="googleDriveLink2">Go to Google Drive</d2l-tooltip>
@@ -204,8 +146,6 @@
 								<d2l-tooltip for="rssFeedLink2">RSS Feed</d2l-tooltip>
 								<d2l-card-footer-link id="outcomesLink2" icon="d2l-tier1:outcomes" text="Outcomes" secondary-text="5"></d2l-card-footer-link>
 								<d2l-tooltip for="outcomesLink2">Outcomes</d2l-tooltip>
-								<d2l-card-footer-link id="assignmentsLink2" icon="d2l-tier1:assignments" text="Assignments" secondary-text="3"></d2l-card-footer-link>
-								<d2l-tooltip position="top" style="width: 100%;" for="assignmentsLink2">You have 3 assignments due tomorrow.</d2l-tooltip>
 							</div>
 						</d2l-card>
 
@@ -216,77 +156,44 @@
 									<d2l-dropdown-content><div>This is where you could put the super cool features for your card!</div><br><div>As with all dropdowns, you can choose between a generic dropdown container, or a menu specific one.</div></d2l-dropdown-content>
 							</d2l-dropdown-more>
 							<d2l-button-icon slot="actions" translucent text="unpin" icon="d2l-tier1:pin-filled"></d2l-button-icon>
-							<div slot="content"><div style="text-align: center;">Painting</div></div>
-							<div slot="footer">Secondary Actions</div>
+							<div slot="content" style="text-align: center;">Painting</div>
+							<d2l-button slot="footer" style="width: 100%;">Shiny Button</d2l-button>
 						</d2l-card>
 
 					</div>
 				</template>
 			</demo-snippet>
 
-			<h3>Card</h3>
+			<h3>Card (badges, no-link)</h3>
 
 			<demo-snippet>
 				<template>
-					<d2l-card text="Jovian" href="https://en.wikipedia.org/wiki/Jupiter"
-						style="width: 300px; height: 500px;">
-						<img slot="header" alt="" style="display: block; width: 100%; height: 150px;" src="https://www.nasa.gov/sites/default/files/thumbnails/image/pia21970-opt.jpg" />
-						<d2l-dropdown-more slot="actions" translucent visible-on-ancestor text="Open!">
-							<d2l-dropdown-content>Some dropdown stuffs...</d2l-dropdown-content>
-						</d2l-dropdown-more>
-						<d2l-button-icon slot="actions" translucent text="unpin" icon="d2l-tier1:pin-filled"></d2l-button-icon>
-						<div slot="content">
-							<d2l-card-content-title>Jupiter</d2l-card-content-title>
-							<d2l-card-content-meta>
-								<div>Gas Giant</div>
-								<div>Orbital Period: 11.86yr</div>
-								<div>Orbital Speed: 13.07km/s</div>
-								<div>Known Satellites: 79</div>
-								<div>Volume: 1321 Earths</div>
-								<div>Mass: 317.8 Earths</div>
-								<div>Surface Temp: 165-112K</div>
-							</d2l-card-content-meta>
-						</div>
+
+					<d2l-card text="Image Badge" href="https://en.wikipedia.org/wiki/Hydrology" style="width: 240px; height: 280px;">
+						<img slot="header" alt="" style="display: block; width: 100%;" src="https://s.brightspace.com/course-images/images/38e839b1-37fa-470c-8830-b189ce4ae134/tile-high-density-max-size.jpg" />
 						<div slot="badge" class="badge">
-							<img alt="" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Galileo.arp.300pix.jpg/195px-Galileo.arp.300pix.jpg">
+							<img alt="" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Stick_Figure.svg/340px-Stick_Figure.svg.png">
 						</div>
-						<div slot="footer">Secondary Actions</div>
+						<div slot="content" style="text-align: center;">Image Badge</div>
 					</d2l-card>
+
+					<d2l-card text="Status Badge" href="https://en.wikipedia.org/wiki/Hydrology" style="width: 240px; height: 280px;">
+						<img slot="header" alt="" style="display: block; width: 100%;" src="https://s.brightspace.com/course-images/images/38e839b1-37fa-470c-8830-b189ce4ae134/tile-high-density-max-size.jpg" />
+						<div class="badge-status" slot="badge">
+							<d2l-status-indicator text="Success" state="success"></d2l-status-indicator>
+						</div>
+						<div slot="content" style="text-align: center;">Status Badge</div>
+					</d2l-card>
+
+					<d2l-card text="No Link" style="width: 240px; height: 280px;">
+						<img slot="header" alt="" style="display: block; width: 100%;" src="https://s.brightspace.com/course-images/images/38e839b1-37fa-470c-8830-b189ce4ae134/tile-high-density-max-size.jpg" />
+						<div slot="content" style="text-align: center;">No Link</div>
+					</d2l-card>
+
 				</template>
 			</demo-snippet>
 
-			<h3>Card (no link)</h3>
-
-			<demo-snippet>
-				<template>
-					<d2l-card text="Jovian"
-						style="width: 300px; height: 500px;">
-						<img slot="header" alt="" style="display: block; width: 100%; height: 150px;" src="https://www.nasa.gov/sites/default/files/thumbnails/image/pia21970-opt.jpg" />
-						<d2l-dropdown-more slot="actions" translucent visible-on-ancestor text="Open!">
-							<d2l-dropdown-content>Some dropdown stuffs...</d2l-dropdown-content>
-						</d2l-dropdown-more>
-						<d2l-button-icon slot="actions" translucent text="unpin" icon="d2l-tier1:pin-filled"></d2l-button-icon>
-						<div slot="content">
-							<d2l-card-content-title>Jupiter</d2l-card-content-title>
-							<d2l-card-content-meta>
-								<div>Gas Giant</div>
-								<div>Orbital Period: 11.86yr</div>
-								<div>Orbital Speed: 13.07km/s</div>
-								<div>Known Satellites: 79</div>
-								<div>Volume: 1321 Earths</div>
-								<div>Mass: 317.8 Earths</div>
-								<div>Surface Temp: 165-112K</div>
-							</d2l-card-content-meta>
-						</div>
-						<div slot="badge" class="badge">
-							<img alt="" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Galileo.arp.300pix.jpg/195px-Galileo.arp.300pix.jpg">
-						</div>
-						<div slot="footer">Secondary Actions</div>
-					</d2l-card>
-				</template>
-			</demo-snippet>
-
-			<h3>Card (side-by-side)</h3>
+			<h3>Card (header actions, meta-content, footer links)</h3>
 
 			<demo-snippet>
 				<template>
@@ -295,32 +202,52 @@
 						style="width: 240px; height: 300px;">
 						<img slot="header" alt="" style="display: block; width: 100%;" src="https://s.brightspace.com/course-images/images/38e839b1-37fa-470c-8830-b189ce4ae134/tile-high-density-max-size.jpg" />
 						<d2l-dropdown-more slot="actions" translucent visible-on-ancestor text="Open!">
-							<d2l-dropdown-content><div>This is where you could put the super cool features for your card!</div><br><div>As with all dropdowns, you can choose between a generic dropdown container, or a menu specific one.</div></d2l-dropdown-content>
+								<d2l-dropdown-content>
+									<div>This is where you could put the super cool features for your card!</div><br><div>As with all dropdowns, you can choose between a generic dropdown container, or a menu specific one.</div>
+									<div>This is where you could put the super cool features for your card!</div><br><div>As with all dropdowns, you can choose between a generic dropdown container, or a menu specific one.</div>
+									<div>This is where you could put the super cool features for your card!</div><br><div>As with all dropdowns, you can choose between a generic dropdown container, or a menu specific one.</div>
+								</d2l-dropdown-content>
 						</d2l-dropdown-more>
 						<d2l-button-icon slot="actions" translucent text="unpin" icon="d2l-tier1:pin-filled"></d2l-button-icon>
-						<div slot="content"><div style="text-align: center;">Hydrology</div></div>
-						<div slot="footer">Secondary Actions</div>
+						<div slot="content"><div style="text-align: center;">Hydrology</div><d2l-card-content-meta>This is some extra meta data that will fill the content slot of the card.</d2l-card-content-meta></div>
+						<div slot="footer">
+							<d2l-card-footer-link id="googleDriveLink3" icon="d2l-tier1:google-drive" text="Google Drive" secondary-text="99+" href="https://www.google.ca/drive/"></d2l-card-footer-link>
+							<d2l-tooltip for="googleDriveLink3">Go to Google Drive</d2l-tooltip>
+							<d2l-card-footer-link id="rssFeedLink3" icon="d2l-tier1:rss" text="RSS Feed" secondary-text="1"></d2l-card-footer-link>
+							<d2l-tooltip for="rssFeedLink3">RSS Feed</d2l-tooltip>
+							<d2l-card-footer-link id="outcomesLink3" icon="d2l-tier1:outcomes" text="Outcomes" secondary-text="5"></d2l-card-footer-link>
+							<d2l-tooltip for="outcomesLink3">Outcomes</d2l-tooltip>
+							<d2l-card-footer-link id="assignmentsLink3" icon="d2l-tier1:assignments" text="Assignments" secondary-text="3"></d2l-card-footer-link>
+							<d2l-tooltip position="top" style="width: 100%;" for="assignmentsLink3">You have 3 assignments due tomorrow.</d2l-tooltip>
+						</div>
 					</d2l-card>
 
 					<d2l-card text="Grade 2" href="https://en.wikipedia.org/wiki/Second_grade"
 						style="width: 240px; height: 300px;">
 						<img slot="header" alt="" style="display: block; width: 100%;" src="https://s.brightspace.com/course-images/images/e5fd575a-bc14-4a80-89e1-46f349a76178/tile-low-density-max-size.jpg" />
 						<d2l-dropdown-more slot="actions" translucent visible-on-ancestor text="Open!">
-							<d2l-dropdown-content><div>This is where you could put the super cool features for your card!</div><br><div>As with all dropdowns, you can choose between a generic dropdown container, or a menu specific one.</div></d2l-dropdown-content>
+								<d2l-dropdown-content><div>This is where you could put the super cool features for your card!</div><br><div>As with all dropdowns, you can choose between a generic dropdown container, or a menu specific one.</div></d2l-dropdown-content>
 						</d2l-dropdown-more>
 						<d2l-button-icon slot="actions" translucent text="unpin" icon="d2l-tier1:pin-filled"></d2l-button-icon>
-						<div slot="content"><div style="text-align: center;">Grade 2</div></div>
-						<div slot="footer">Secondary Actions</div>
+						<div slot="content" style="text-align: center;">Grade 2</div>
+						<div slot="footer">
+							<d2l-card-footer-link id="googleDriveLink4" icon="d2l-tier1:google-drive" text="Google Drive" secondary-text="99+" href="https://www.google.ca/drive/"></d2l-card-footer-link>
+							<d2l-tooltip for="googleDriveLink4">Go to Google Drive</d2l-tooltip>
+							<d2l-card-footer-link id="rssFeedLink4" icon="d2l-tier1:rss" text="RSS Feed" secondary-text="1"></d2l-card-footer-link>
+							<d2l-tooltip for="rssFeedLink4">RSS Feed</d2l-tooltip>
+							<d2l-card-footer-link id="outcomesLink4" icon="d2l-tier1:outcomes" text="Outcomes" secondary-text="5"></d2l-card-footer-link>
+							<d2l-tooltip for="outcomesLink4">Outcomes</d2l-tooltip>
+						</div>
 					</d2l-card>
 
 					<d2l-card text="Painting" href="https://en.wikipedia.org/wiki/Painting"
 						style="width: 240px; height: 300px;">
 						<img slot="header" alt="" style="display: block; width: 100%;" src="https://s.brightspace.com/course-images/images/63b162ab-b582-4bf9-8c1d-1dad04714121/tile-low-density-max-size.jpg" />
 						<d2l-dropdown-more slot="actions" translucent visible-on-ancestor text="Open!">
-							<d2l-dropdown-content><div>This is where you could put the super cool features for your card!</div><br><div>As with all dropdowns, you can choose between a generic dropdown container, or a menu specific one.</div></d2l-dropdown-content>
+								<d2l-dropdown-content><div>This is where you could put the super cool features for your card!</div><br><div>As with all dropdowns, you can choose between a generic dropdown container, or a menu specific one.</div></d2l-dropdown-content>
 						</d2l-dropdown-more>
 						<d2l-button-icon slot="actions" translucent text="unpin" icon="d2l-tier1:pin-filled"></d2l-button-icon>
-						<div slot="content"><div style="text-align: center;">Painting</div></div>
+						<div slot="content" style="text-align: center;">Painting</div>
 						<div slot="footer">Secondary Actions</div>
 					</d2l-card>
 
@@ -328,8 +255,5 @@
 			</demo-snippet>
 
 		</div>
-		<script>
-
-		</script>
 	</body>
 </html>
