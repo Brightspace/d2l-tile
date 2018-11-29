@@ -1,21 +1,29 @@
-<link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="../d2l-colors/d2l-colors.html">
-<link rel="import" href="../d2l-fastdom-import/fastdom.html">
-<link rel="import" href="../d2l-icons/d2l-icon.html">
-<link rel="import" href="../d2l-link/d2l-link-behavior.html">
-<link rel="import" href="../d2l-offscreen/d2l-offscreen-shared-styles.html">
-<link rel="import" href="../d2l-polymer-behaviors/d2l-focusable-behavior.html">
-
-<!--
+/**
 `d2l-card-footer-link`
 Polymer-based web component for links in card footers
 
 @demo demo/d2l-card-footer-link.html
--->
+*/
+/*
+  FIXME(polymer-modulizer): the above comments were extracted
+  from HTML and may be out of place here. Review them and
+  then delete this comment!
+*/
+import '../@polymer/polymer/polymer-legacy.js';
 
-<dom-module id="d2l-card-footer-link">
+import '../d2l-colors/d2l-colors.js';
+import '../fastdom/fastdom.js';
+import '../d2l-icons/d2l-icon.js';
+import '../d2l-link/d2l-link-behavior.js';
+import '../d2l-offscreen/d2l-offscreen-shared-styles.js';
+import '../d2l-polymer-behaviors/d2l-focusable-behavior.js';
+import { Polymer } from '../@polymer/polymer/lib/legacy/polymer-fn.js';
+import { dom } from '../@polymer/polymer/lib/legacy/polymer.dom.js';
+const $_documentContainer = document.createElement('template');
 
-	<template strip-whitespace>
+$_documentContainer.innerHTML = `<dom-module id="d2l-card-footer-link">
+
+	<template strip-whitespace="">
 		<style include="d2l-offscreen-shared-styles">
 			:host {
 				display: inline-block;
@@ -110,64 +118,65 @@ Polymer-based web component for links in card footers
 		<a class="d2l-focusable" download$="[[download]]" href$="[[href]]" hreflang="[[hreflang]]" rel="[[rel]]" target="[[target]]" type="[[type]]">
 			<span class="d2l-card-footer-link-text">[[text]]</span>
 		</a>
-		<div class="d2l-card-footer-link-content" >
-			<d2l-icon icon=[[icon]]></d2l-icon>
-			<div class="d2l-card-footer-link-secondary-text" aria-hidden hidden>[[secondaryText]]</div>
+		<div class="d2l-card-footer-link-content">
+			<d2l-icon icon="[[icon]]"></d2l-icon>
+			<div class="d2l-card-footer-link-secondary-text" aria-hidden="" hidden="">[[secondaryText]]</div>
 		</div>
 	</template>
 
-	<script>
-		Polymer({
-			is: 'd2l-card-footer-link',
+	
 
-			behaviors: [
-				D2L.PolymerBehaviors.Link.Behavior,
-				D2L.PolymerBehaviors.FocusableBehavior
-			],
+</dom-module>`;
 
-			properties: {
+document.head.appendChild($_documentContainer.content);
+Polymer({
+	is: 'd2l-card-footer-link',
 
-				/**
-				 * Name of icon (ex. [iconset-name:icon-id]) for underlying [Polymer iron-iconset-svg](https://github.com/PolymerElements/iron-iconset-svg) (required).
-				 */
-				icon: {
-					type: String,
-					reflectToAttribute: true
-				},
+	behaviors: [
+		D2L.PolymerBehaviors.Link.Behavior,
+		D2L.PolymerBehaviors.FocusableBehavior
+	],
 
-				/**
-				 * Accessible text for the link (not visible, gets announced when user focuses).
-				 */
-				text: {
-					type: String,
-					reflectToAttribute: true
-				},
+	properties: {
 
-				/**
-				 * Secondary text to be display as a superscript on the icon.
-				 */
-				secondaryText: {
-					type: String,
-					observer: '_handleSecondaryText',
-					reflectToAttribute: true
-				}
+		/**
+		 * Name of icon (ex. [iconset-name:icon-id]) for underlying [Polymer iron-iconset-svg](https://github.com/PolymerElements/iron-iconset-svg) (required).
+		 */
+		icon: {
+			type: String,
+			reflectToAttribute: true
+		},
 
-			},
+		/**
+		 * Accessible text for the link (not visible, gets announced when user focuses).
+		 */
+		text: {
+			type: String,
+			reflectToAttribute: true
+		},
 
-			_handleSecondaryText: function(newValue, oldValue) {
-				var elem = Polymer.dom(this.root).querySelector('.d2l-card-footer-link-secondary-text');
-				if (newValue && newValue.length > 0) {
-					fastdom.mutate(function() {
-						elem.removeAttribute('hidden');
-					});
-				} else if (oldValue) {
-					fastdom.mutate(function() {
-						elem.setAttribute('hidden', 'hidden');
-					});
-				}
-			}
+		/**
+		 * Secondary text to be display as a superscript on the icon.
+		 */
+		secondaryText: {
+			type: String,
+			observer: '_handleSecondaryText',
+			reflectToAttribute: true
+		}
 
-		});
-	</script>
+	},
 
-</dom-module>
+	_handleSecondaryText: function(newValue, oldValue) {
+		var elem = dom(this.root).querySelector('.d2l-card-footer-link-secondary-text');
+		if (newValue && newValue.length > 0) {
+			fastdom.mutate(function() {
+				elem.removeAttribute('hidden');
+			});
+		} else if (oldValue) {
+			fastdom.mutate(function() {
+				elem.setAttribute('hidden', 'hidden');
+			});
+		}
+	}
+
+});
