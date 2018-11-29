@@ -1,7 +1,7 @@
 {
   "name": "d2l-card",
   "description": "Polymer-based web components for D2L card.",
-  "main": "d2l-tile.html",
+  "main": "d2l-card.html",
   "license": "Apache-2.0",
   "homepage": "https://github.com/BrightspaceUI/tile",
   "ignore": [
