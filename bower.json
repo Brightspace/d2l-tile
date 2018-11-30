@@ -18,7 +18,6 @@
   ],
   "dependencies": {
     "d2l-colors": "^3.1.2",
-    "d2l-dropdown": "^6.6.1",
     "d2l-fastdom-import": "https://github.com/Brightspace/fastdom-import.git#v1.0.2",
     "d2l-icons": "^5.1.0",
     "d2l-link": "^4.0.2",
@@ -29,7 +28,7 @@
   },
   "devDependencies": {
     "d2l-button": "^4.7.3",
-    "d2l-menu": "^1.1.0",
+    "d2l-dropdown": "^6.6.1",
     "d2l-status-indicator": "^2.0.0",
     "d2l-tooltip": "^2.0.5",
     "d2l-typography": "^6.0.8",
