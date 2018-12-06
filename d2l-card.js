@@ -9,18 +9,18 @@ Polymer-based web components for card
   from HTML and may be out of place here. Review them and
   then delete this comment!
 */
-import '../@polymer/polymer/polymer-legacy.js';
+import '@polymer/polymer/polymer-legacy.js';
 
-import '../d2l-colors/d2l-colors.js';
-import '../fastdom/fastdom.js';
-import '../d2l-link/d2l-link-behavior.js';
-import '../d2l-offscreen/d2l-offscreen-shared-styles.js';
-import '../d2l-polymer-behaviors/d2l-dom.js';
-import '../d2l-polymer-behaviors/d2l-focusable-behavior.js';
-import ResizeObserver from '../resize-observer-polyfill/dist/ResizeObserver.es.js';
-import { Polymer } from '../@polymer/polymer/lib/legacy/polymer-fn.js';
-import { dom } from '../@polymer/polymer/lib/legacy/polymer.dom.js';
-import { afterNextRender } from '../@polymer/polymer/lib/utils/render-status.js';
+import 'd2l-colors/d2l-colors.js';
+import 'fastdom/fastdom.js';
+import 'd2l-link/d2l-link-behavior.js';
+import 'd2l-offscreen/d2l-offscreen-shared-styles.js';
+import 'd2l-polymer-behaviors/d2l-dom.js';
+import 'd2l-polymer-behaviors/d2l-focusable-behavior.js';
+import ResizeObserver from 'resize-observer-polyfill/dist/ResizeObserver.es.js';
+import { Polymer } from '@polymer/polymer/lib/legacy/polymer-fn.js';
+import { dom } from '@polymer/polymer/lib/legacy/polymer.dom.js';
+import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
 const $_documentContainer = document.createElement('template');
 
 $_documentContainer.innerHTML = `<dom-module id="d2l-card">
@@ -58,11 +58,6 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-card">
 				@apply --d2l-offscreen;
 			}
 
-			/* P2-shadow */
-			:host-context([dir="rtl"]) .d2l-card-link-text {
-				@apply --d2l-offscreen-rtl
-			}
-			/* P1-shady, P2-shady */
 			:host(:dir(rtl)) .d2l-card-link-text {
 				@apply --d2l-offscreen-rtl
 			}
@@ -88,12 +83,6 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-card">
 				/* this must be higher than footer z-index so dropdowns will be on top */
 				z-index: 3;
 			}
-			/* P2-shadow */
-			:host-context([dir="rtl"]) .d2l-card-actions {
-				left: 0.6rem;
-				right: auto;
-			}
-			/* P1-shady, P2-shady */
 			:host(:dir(rtl)) .d2l-card-actions {
 				left: 0.6rem;
 				right: auto;
@@ -101,12 +90,6 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-card">
 			.d2l-card-actions ::slotted(*) {
 				margin-left: 0.3rem;
 			}
-			/* P2-shadow */
-			:host-context([dir="rtl"]) .d2l-card-actions ::slotted(*) {
-				margin-left: 0;
-				margin-right: 0.3rem;
-			}
-			/* P1-shady, P2-shady */
 			:host(:dir(rtl)) .d2l-card-actions ::slotted(*) {
 				margin-left: 0;
 				margin-right: 0.3rem;
@@ -133,11 +116,6 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-card">
 				box-sizing: content-box;
 				height: auto;
 			}
-			/* P2-shadow */
-			:host-context([dir="rtl"]) .d2l-card-footer-hidden .d2l-card-footer {
-				@apply --d2l-offscreen-rtl
-			}
-			/* P1-shady, P2-shady */
 			:host(:dir(rtl)) .d2l-card-footer-hidden .d2l-card-footer {
 				@apply --d2l-offscreen-rtl
 			}
@@ -192,8 +170,6 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-card">
 			<div class="d2l-card-footer"><slot name="footer"></slot></div>
 		</div>
 	</template>
-
-	
 
 </dom-module>`;
 
