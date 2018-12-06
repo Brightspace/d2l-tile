@@ -34,14 +34,6 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-card-footer-link">
 			:host[hidden] {
 				display: none;
 			}
-			/* P2-shadow */
-			:host-context([dir="rtl"]) {
-				left: auto;
-				margin-left: 0.3rem;
-				margin-right: 0;
-				right: -0.6rem;
-			}
-			/* P1-shady, P2-shady */
 			:host(:dir(rtl)) {
 				left: auto;
 				margin-left: 0.3rem;
@@ -76,11 +68,6 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-card-footer-link">
 			.d2l-card-footer-link-text {
 				@apply --d2l-offscreen;
 			}
-			/* P2-shadow */
-			:host-context([dir="rtl"]) .d2l-card-footer-link-text {
-				@apply --d2l-offscreen-rtl
-			}
-			/* P1-shady, P2-shady */
 			:host(:dir(rtl)) .d2l-card-footer-link-text {
 				@apply --d2l-offscreen-rtl
 			}
@@ -101,12 +88,6 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-card-footer-link">
 				right: 0;
 				top: 0;
 			}
-			/* P2-shadow */
-			:host-context([dir="rtl"]) .d2l-card-footer-link-secondary-text {
-				left: 0;
-				right: auto;
-			}
-			/* P1-shady, P2-shady */
 			:host(:dir(rtl)) .d2l-card-footer-link-secondary-text {
 				left: 0;
 				right: auto;
@@ -124,7 +105,7 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-card-footer-link">
 		</div>
 	</template>
 
-	
+
 
 </dom-module>`;
 
