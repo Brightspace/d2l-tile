@@ -17,7 +17,7 @@ import 'd2l-link/d2l-link-behavior.js';
 import 'd2l-offscreen/d2l-offscreen-shared-styles.js';
 import 'd2l-polymer-behaviors/d2l-dom.js';
 import 'd2l-polymer-behaviors/d2l-focusable-behavior.js';
-import ResizeObserver from 'resize-observer-polyfill/dist/ResizeObserver.es.js';
+import { ResizeObserver } from 'd2l-resize-aware/resize-observer-module.js';
 import { Polymer } from '@polymer/polymer/lib/legacy/polymer-fn.js';
 import { dom } from '@polymer/polymer/lib/legacy/polymer.dom.js';
 import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
