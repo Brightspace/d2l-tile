@@ -143,6 +143,11 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-card">
 				box-shadow: 0 0 0 4px rgba(0, 111, 191, 0.3);
 				transform: translateY(-4px);
 			}
+			:host([href]:hover) .d2l-card-content,
+			:host([href][active]) .d2l-card-content {
+				color: var(--d2l-color-celestine);
+				text-decoration: underline;
+			}
 			/* this is needed to ensure tooltip is not be clipped by adjacent cards */
 			:host([tooltip-showing]) {
 				z-index: 1;
