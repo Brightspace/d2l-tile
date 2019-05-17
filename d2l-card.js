@@ -319,12 +319,12 @@ Polymer({
 		}.bind(this));
 	},
 
-	_onLinkMouseEnter: function(e) {
+	_onLinkMouseEnter: function() {
 		var linkContainer = dom(this.root).querySelector('.d2l-card-link-container');
 		linkContainer.classList.add('d2l-card-link-container-hover');
 	},
 
-	_onLinkMouseLeave: function(e) {
+	_onLinkMouseLeave: function() {
 		var linkContainer = dom(this.root).querySelector('.d2l-card-link-container');
 		linkContainer.classList.remove('d2l-card-link-container-hover');
 	}
