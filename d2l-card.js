@@ -143,7 +143,9 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-card">
 				box-shadow: 0 0 0 4px rgba(0, 111, 191, 0.3);
 				transform: translateY(-4px);
 			}
-			:host([href]:hover) .d2l-card-content,
+			/* The .d2l-card-link-container-hover is used to only color/underline when
+			hovering the anchor. These styles are not applied when hovering actions. */
+			:host([href]) .d2l-card-link-container-hover,
 			:host([href][active]) .d2l-card-content {
 				color: var(--d2l-color-celestine);
 				text-decoration: underline;
@@ -212,6 +214,8 @@ Polymer({
 		this._onFooterResize = this._onFooterResize.bind(this);
 		this._onLinkBlur = this._onLinkBlur.bind(this);
 		this._onLinkFocus = this._onLinkFocus.bind(this);
+		this._onLinkMouseEnter = this._onLinkMouseEnter.bind(this);
+		this._onLinkMouseLeave = this._onLinkMouseLeave.bind(this);
 		this._onDropdownOpen = this._onDropdownOpen.bind(this);
 		this._onDropdownClose = this._onDropdownClose.bind(this);
 		this._onTooltipShow = this._onTooltipShow.bind(this);
@@ -229,6 +233,8 @@ Polymer({
 			var link = dom(this.root).querySelector('a');
 			link.addEventListener('blur', this._onLinkBlur);
 			link.addEventListener('focus', this._onLinkFocus);
+			link.addEventListener('mouseenter', this._onLinkMouseEnter);
+			link.addEventListener('mouseleave', this._onLinkMouseLeave);
 			this.addEventListener('d2l-dropdown-open', this._onDropdownOpen);
 			this.addEventListener('d2l-dropdown-close', this._onDropdownClose);
 			this.addEventListener('d2l-tooltip-show', this._onTooltipShow);
@@ -244,6 +250,8 @@ Polymer({
 		var link = dom(this.root).querySelector('a');
 		link.removeEventListener('blur', this._onLinkBlur);
 		link.removeEventListener('focus', this._onLinkFocus);
+		link.removeEventListener('mouseenter', this._onLinkMouseEnter);
+		link.removeEventListener('mouseleave', this._onLinkMouseLeave);
 		this.removeEventListener('d2l-dropdown-open', this._onDropdownOpen);
 		this.removeEventListener('d2l-dropdown-close', this._onDropdownClose);
 		this.removeEventListener('d2l-tooltip-show', this._onTooltipShow);
@@ -309,6 +317,16 @@ Polymer({
 		fastdom.mutate(function() {
 			this.setAttribute('active', 'active');
 		}.bind(this));
+	},
+
+	_onLinkMouseEnter: function(e) {
+		var linkContainer = dom(this.root).querySelector('.d2l-card-link-container');
+		linkContainer.classList.add('d2l-card-link-container-hover');
+	},
+
+	_onLinkMouseLeave: function(e) {
+		var linkContainer = dom(this.root).querySelector('.d2l-card-link-container');
+		linkContainer.classList.remove('d2l-card-link-container-hover');
 	}
 
 });
