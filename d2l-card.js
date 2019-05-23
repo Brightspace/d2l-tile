@@ -34,8 +34,7 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-card">
 				box-sizing: border-box;
 				display: inline-block;
 				position: relative;
-				-webkit-transition: transform 300ms ease-out;
-				transition: transform 300ms ease-out 50ms;
+				transition: transform 300ms ease-out 50ms, box-shadow 0.2s;
 				z-index: 0;
 			}
 			.d2l-card-container {
@@ -134,13 +133,13 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-card">
 				box-shadow: 0 4px 18px 2px rgba(0,0,0,0.06);
 			}
 			:host([active]) {
-				border-color: rgba(0, 111, 191, 0.4);
-				box-shadow: 0 0 0 4px rgba(0, 111, 191, 0.3);
+				border-color: transparent;
+				box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px var(--d2l-color-celestine);
 			}
 			:host([active]:hover),
 			:host([subtle][active]:hover) {
-				border-color: rgba(0, 111, 191, 0.4);
-				box-shadow: 0 0 0 4px rgba(0, 111, 191, 0.3);
+				border-color: transparent;
+				box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px var(--d2l-color-celestine);
 				transform: translateY(-4px);
 			}
 			/* The .d2l-card-link-container-hover is used to only color/underline when
