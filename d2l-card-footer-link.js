@@ -101,7 +101,7 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-card-footer-link">
 		</a>
 		<div class="d2l-card-footer-link-content">
 			<d2l-icon icon="[[icon]]"></d2l-icon>
-			<div class="d2l-card-footer-link-secondary-text" aria-hidden="" hidden="">[[secondaryText]]</div>
+			<div class="d2l-card-footer-link-secondary-text" aria-hidden="true" hidden="">[[secondaryText]]</div>
 		</div>
 	</template>
 
