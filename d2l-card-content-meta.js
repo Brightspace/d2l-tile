@@ -27,11 +27,14 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-card-content-meta">
 				display: inline-block;
 				line-height: 1rem;
 			}
+			:host span {
+				display: inline-block; /* extra inline-block helps reset display context to opt-out of underline */
+			}
 		</style>
-		<slot></slot>
+		<span><slot></slot></span>
 	</template>
 
-	
+
 
 </dom-module>`;
 
