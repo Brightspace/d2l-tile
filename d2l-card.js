@@ -162,6 +162,24 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-card">
 				box-shadow: none;
 				transform: none;
 			}
+			@media (prefers-color-scheme: dark) {
+				:host,
+				:host([subtle]) {
+					background-color: var(--d2l-color-dark-mode-2);
+					border: 1px solid transparent;
+				}
+				:host([active]) {
+					box-shadow: 0 0 0 2px var(--d2l-color-dark-mode-2), 0 0 0 4px var(--d2l-color-celestine-plus-1);
+				}
+				:host([active]:hover),
+				:host([subtle][active]:hover) {
+					box-shadow: 0 0 0 2px var(--d2l-color-dark-mode-2), 0 0 0 4px var(--d2l-color-celestine-plus-1);
+				}
+				:host([href]) .d2l-card-link-container-hover,
+				:host([href][active]) .d2l-card-content {
+					color: var(--d2l-color-celestine-plus-1);
+				}
+			}
 		</style>
 		<div class="d2l-card-container d2l-visible-on-ancestor-target d2l-card-footer-hidden">
 			<a class="d2l-focusable" download$="[[download]]" href$="[[href]]" hreflang="[[hreflang]]" rel="[[rel]]" target="[[target]]" type="[[type]]">
