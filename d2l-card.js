@@ -162,20 +162,20 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-card">
 				box-shadow: none;
 				transform: none;
 			}
-			:host-context(.d2l-dark-mode),
-			:host-context(.d2l-dark-mode):host([subtle]) {
+			:host-context([d2l-color-scheme="dark"]),
+			:host-context([d2l-color-scheme="dark"]):host([subtle]) {
 				background-color: var(--d2l-color-dark-mode-2);
 				border: 1px solid transparent;
 			}
-			:host-context(.d2l-dark-mode):host([active]) {
+			:host-context([d2l-color-scheme="dark"]):host([active]) {
 				box-shadow: 0 0 0 2px var(--d2l-color-dark-mode-2), 0 0 0 4px var(--d2l-color-celestine-plus-1);
 			}
-			:host-context(.d2l-dark-mode):host([active]:hover),
-			:host-context(.d2l-dark-mode):host([subtle][active]:hover) {
+			:host-context([d2l-color-scheme="dark"]):host([active]:hover),
+			:host-context([d2l-color-scheme="dark"]):host([subtle][active]:hover) {
 				box-shadow: 0 0 0 2px var(--d2l-color-dark-mode-2), 0 0 0 4px var(--d2l-color-celestine-plus-1);
 			}
-			:host-context(.d2l-dark-mode):host([href]) .d2l-card-link-container-hover,
-			:host-context(.d2l-dark-mode):host([href][active]) .d2l-card-content {
+			:host-context([d2l-color-scheme="dark"]):host([href]) .d2l-card-link-container-hover,
+			:host-context([d2l-color-scheme="dark"]):host([href][active]) .d2l-card-content {
 				color: var(--d2l-color-celestine-plus-1);
 			}
 		</style>
