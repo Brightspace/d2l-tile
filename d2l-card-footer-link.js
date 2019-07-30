@@ -13,7 +13,7 @@ import '@polymer/polymer/polymer-legacy.js';
 
 import 'd2l-colors/d2l-colors.js';
 import 'fastdom/fastdom.js';
-import 'd2l-icons/d2l-icon.js';
+import '@polymer/iron-icon/iron-icon.js';
 import 'd2l-link/d2l-link-behavior.js';
 import 'd2l-offscreen/d2l-offscreen-shared-styles.js';
 import 'd2l-polymer-behaviors/d2l-focusable-behavior.js';
@@ -57,11 +57,11 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-card-footer-link">
 				width: 100%;
 				z-index: 1;
 			}
-			a.d2l-focusable[href]:focus + .d2l-card-footer-link-content > d2l-icon,
-			a.d2l-focusable[href]:hover + .d2l-card-footer-link-content > d2l-icon {
+			a.d2l-focusable[href]:focus + .d2l-card-footer-link-content > iron-icon,
+			a.d2l-focusable[href]:hover + .d2l-card-footer-link-content > iron-icon {
 				color: var(--d2l-color-celestine);
 			}
-			d2l-icon {
+			iron-icon {
 				height: 0.9rem;
 				width: 0.9rem;
 			}
@@ -100,7 +100,7 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-card-footer-link">
 			<span class="d2l-card-footer-link-text">[[text]]</span>
 		</a>
 		<div class="d2l-card-footer-link-content">
-			<d2l-icon icon="[[icon]]"></d2l-icon>
+			<iron-icon icon="[[icon]]"></iron-icon>
 			<div class="d2l-card-footer-link-secondary-text" aria-hidden="true" hidden="">[[secondaryText]]</div>
 		</div>
 	</template>

@@ -43,6 +43,7 @@
   },
   "main": "d2l-card.js",
   "dependencies": {
+    "@polymer/iron-icon": "^3.0.1",
     "d2l-colors": "BrightspaceUI/colors#semver:^4",
     "fastdom": "^1.0.8",
     "d2l-icons": "BrightspaceUI/icons#semver:^6",
