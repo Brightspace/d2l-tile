@@ -125,11 +125,8 @@ npm test
 [ci-url]: https://travis-ci.org/BrightspaceUI/card
 [ci-image]: https://travis-ci.org/BrightspaceUI/card.svg?branch=master
 
-## Versioning
+## Versioning & Releasing
 
-Commits and PR merges to master will automatically do a minor version bump which will:
-* Update the version in `package.json`
-* Add a tag matching the new version
-* Create a github release matching the new version
+All version changes should obey [semantic versioning](https://semver.org/) rules.
 
-By using either **[increment major]** or **[increment patch]** notation inside your merge message, you can overwrite the default version upgrade of minor to the position of your choice.
+Include either `[increment major]`, `[increment minor]` or `[increment patch]` in your merge commit message to automatically increment the `package.json` version and create a tag during the next build.
