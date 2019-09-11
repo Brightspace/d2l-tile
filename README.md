@@ -122,8 +122,8 @@ npm test
 
 [bower-url]: http://bower.io/search/?q=d2l-card
 [bower-image]: https://badge.fury.io/bo/d2l-card.svg
-[ci-url]: https://travis-ci.org/BrightspaceUI/card
-[ci-image]: https://travis-ci.org/BrightspaceUI/card.svg?branch=master
+[ci-url]: https://travis-ci.com/BrightspaceUI/card
+[ci-image]: https://travis-ci.com/BrightspaceUI/card.svg?branch=master
 
 ## Versioning & Releasing
 
