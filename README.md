@@ -84,6 +84,7 @@ Then add the `d2l-card`, provide an `href` if relevant, and provide elements for
 * `text` (required): accessible text for the card (will be announced when AT user focused on card)
 * `href` (optional): the location for the primary action/navigation
 * `subtle` (optional): used for a subtle aesthetic on non-white backgrounds
+* `center-content` (optional): used to style the card's content as horizontally centered
 * other link properties as defined by [D2L.PolymerBehaviors.Link.Behavior](https://github.com/BrightspaceUI/link/blob/master/d2l-link-behavior.html)
 
 ## Developing, Testing and Contributing

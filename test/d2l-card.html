@@ -87,6 +87,13 @@ describe('<d2l-card>', function() {
 			expect(D2L.Dom.Focus.getComposedActiveElement()).to.equal(link);
 		});
 
+		it('has text-align:center on the content slot after attribute center-content is applied', function() {
+			var content = card._getContainer().querySelector('.d2l-card-content');
+			expect(window.getComputedStyle(content, null).getPropertyValue('text-align')).to.not.equal('center');
+			card.setAttribute('center-content', '');
+			expect(window.getComputedStyle(content, null).getPropertyValue('text-align')).to.equal('center');
+		});
+
 	});
 
 	describe('card with footer', function() {

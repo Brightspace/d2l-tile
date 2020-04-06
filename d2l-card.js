@@ -72,6 +72,10 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-card">
 			.d2l-card-content {
 				padding: 1.2rem 0.8rem 0 0.8rem;
 			}
+			.d2l-card-content[centerContent] {
+				text-align: center;
+			}
+
 			.d2l-card-footer-hidden .d2l-card-content {
 				padding-bottom: 1.2rem;
 			}
@@ -170,7 +174,7 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-card">
 			<div class="d2l-card-link-container">
 				<div class="d2l-card-header"><slot name="header"></slot></div>
 				<div class="d2l-card-badge"><slot name="badge"></slot></div>
-				<div class="d2l-card-content"><slot name="content"></slot></div>
+				<div class="d2l-card-content" centerContent$="[[centerContent]]"><slot name="content"></slot></div>
 			</div>
 			<div class="d2l-card-actions"><slot name="actions"></slot></div>
 			<div class="d2l-card-footer"><slot name="footer"></slot></div>
@@ -203,6 +207,14 @@ Polymer({
 		 */
 		text: {
 			type: String,
+			reflectToAttribute: true
+		},
+
+		/**
+		 * Indicates whether to apply text-align:center to the content slot
+		 */
+		centerContent: {
+			type: Boolean,
 			reflectToAttribute: true
 		}
 
