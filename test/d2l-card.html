@@ -36,6 +36,18 @@
 			</template>
 		</test-fixture>
 
+		<test-fixture id="cardWithAlignCenter">
+			<template>
+				<d2l-card align-center text="accessible title" href="https://google.com" style="width: 300px; height: 500px;">
+					<div slot="content">
+						<div>title</div>
+						<d2l-card-content-meta>some other info</d2l-card-content-meta>
+					</div>
+					<div slot="footer"><div id="footerContent">footer stuff</div></div>
+				</d2l-card>
+			</template>
+		</test-fixture>
+
 		<script type="module">
 import 'd2l-polymer-behaviors/d2l-dom-focus.js';
 import '../d2l-card.js';
@@ -104,6 +116,21 @@ describe('<d2l-card>', function() {
 			});
 		});
 
+	});
+
+	describe('card with center-align attribute', function() {
+
+		beforeEach(function(done) {
+			card = fixture('cardWithAlignCenter');
+			raf(done);
+		});
+
+		it('Applies center align to the content and footer of the card', function() {
+			var footer = card._getContainer().querySelector('.d2l-card-footer');
+			var content = card._getContainer().querySelector('.d2l-card-content');
+			expect(window.getComputedStyle(footer).getPropertyValue('text-align')).to.equal('center');
+			expect(window.getComputedStyle(content).getPropertyValue('text-align')).to.equal('center');
+		});
 	});
 
 });
