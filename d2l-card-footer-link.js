@@ -71,27 +71,59 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-card-footer-link">
 			:host(:dir(rtl)) .d2l-card-footer-link-text {
 				@apply --d2l-offscreen-rtl
 			}
+
 			.d2l-card-footer-link-secondary-text {
-				background-color: white;
-				border: 2px solid var(--d2l-color-carnelian);
-				border-radius: 0.25rem;
 				box-shadow: 0 0 0 1px white;
 				box-sizing: content-box;
-				color: var(--d2l-color-ferrite);
 				display: inline-block;
 				font-size: 0.55rem;
 				font-weight: 400;
 				line-height: 100%;
-				min-width: 0.75rem;
 				padding: 2px;
+			}
+
+			:host([secondary-text-type="box"]) .d2l-card-footer-link-secondary-text {
+				background-color: white;
+				border: 2px solid var(--d2l-card-footer-link-color, var(--d2l-color-carnelian));
+				border-radius: 0.25rem;
+				color: var(--d2l-color-ferrite);
+				position: absolute;
+				min-width: 0.75rem;
+				right: 0;
+				top: 0;
+			}
+
+			.d2l-card-footer-link-secondary-text-container {
 				position: absolute;
 				right: 0;
 				top: 0;
 			}
-			:host(:dir(rtl)) .d2l-card-footer-link-secondary-text {
+
+			:host([secondary-text-type="circle"]) .d2l-card-footer-link-secondary-text-container {
+				right: 1rem;
+				width: 1px;
+			}
+
+			:host([secondary-text-type="circle"]) .d2l-card-footer-link-secondary-text {
+				border: 2px solid var(--d2l-card-footer-link-background-color, var(--d2l-color-carnelian));
+				background-color: var(--d2l-card-footer-link-background-color, var(--d2l-color-carnelian));
+				color: var(--d2l-card-footer-link-color, white);
+				border-radius: 0.75rem;
+				min-width: 0.5rem;
+				padding: 2px;
+				position: relative;
+			}
+
+			:host([secondary-text-type="box"]) :host(:dir(rtl)) .d2l-card-footer-link-secondary-text {
 				left: 0;
 				right: auto;
 			}
+
+			:host([secondary-text-type="circle"]) :host(:dir(rtl)) .d2l-card-footer-link-secondary-text-container {
+				left: 1rem;
+				right: auto;
+			}
+
 			[hidden].d2l-card-footer-link-secondary-text {
 				display: none;
 			}
@@ -101,7 +133,9 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-card-footer-link">
 		</a>
 		<div class="d2l-card-footer-link-content">
 			<d2l-icon icon="[[icon]]"></d2l-icon>
-			<div class="d2l-card-footer-link-secondary-text" aria-hidden="true" hidden="">[[secondaryText]]</div>
+			<div class="d2l-card-footer-link-secondary-text-container">
+				<div class="d2l-card-footer-link-secondary-text" aria-hidden="true" hidden="">[[secondaryText]]</div>
+			</div>
 		</div>
 	</template>
 
@@ -135,7 +169,14 @@ Polymer({
 			type: String,
 			reflectToAttribute: true
 		},
-
+		/**
+		 * The styling you want for your secondary text, options are 'box' and 'circle'
+		 */
+		secondaryTextType: {
+			type: String,
+			reflectToAttribute: true,
+			value: 'box',
+		},
 		/**
 		 * Secondary text to be display as a superscript on the icon.
 		 */
