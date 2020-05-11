@@ -82,7 +82,7 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-card-footer-link">
 				padding: 2px;
 			}
 
-			:host([secondary-text-type="box"]) .d2l-card-footer-link-secondary-text {
+			:host([secondary-text-style="box"]) .d2l-card-footer-link-secondary-text {
 				background-color: white;
 				border: 2px solid var(--d2l-card-footer-link-color, var(--d2l-color-carnelian));
 				border-radius: 0.25rem;
@@ -99,27 +99,36 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-card-footer-link">
 				top: 0;
 			}
 
-			:host([secondary-text-type="circle"]) .d2l-card-footer-link-secondary-text-container {
+			:host([secondary-text-style="circle"]) .d2l-card-footer-link-secondary-text-container {
 				right: 1rem;
 				width: 1px;
 			}
 
-			:host([secondary-text-type="circle"]) .d2l-card-footer-link-secondary-text {
-				border: 2px solid var(--d2l-card-footer-link-background-color, var(--d2l-color-carnelian));
-				background-color: var(--d2l-card-footer-link-background-color, var(--d2l-color-carnelian));
-				color: var(--d2l-card-footer-link-color, white);
+			:host([secondary-text-type="notifications"][secondary-text-style="circle"]) .d2l-card-footer-link-secondary-text {
+				background-color: var(--d2l-color-carnelian-minus-1);
+				border: 2px solid var(--d2l-color-carnelian-minus-1);
+				color: white;
+			}
+
+			:host([secondary-text-type="count"][secondary-text-style="circle"]) .d2l-card-footer-link-secondary-text {
+				background-color: var(--d2l-color-gypsum);
+				border: 2px solid var(--d2l-color-gypsum);
+				color: var(--d2l-color-ferrite);
+			}
+
+			:host([secondary-text-style="circle"]) .d2l-card-footer-link-secondary-text {
 				border-radius: 0.75rem;
 				min-width: 0.5rem;
 				padding: 2px;
 				position: relative;
 			}
 
-			:host([secondary-text-type="box"]) :host(:dir(rtl)) .d2l-card-footer-link-secondary-text {
+			:host([secondary-text-style="box"]) :host(:dir(rtl)) .d2l-card-footer-link-secondary-text {
 				left: 0;
 				right: auto;
 			}
 
-			:host([secondary-text-type="circle"]) :host(:dir(rtl)) .d2l-card-footer-link-secondary-text-container {
+			:host([secondary-text-style="circle"]) :host(:dir(rtl)) .d2l-card-footer-link-secondary-text-container {
 				left: 1rem;
 				right: auto;
 			}
@@ -172,10 +181,18 @@ Polymer({
 		/**
 		 * The styling you want for your secondary text, options are 'box' and 'circle'
 		 */
-		secondaryTextType: {
+		secondaryTextStyle: {
 			type: String,
 			reflectToAttribute: true,
 			value: 'box',
+		},
+		/**
+		 * Sets the color palette for the secondary text (circle style only), options are 'notifications' and 'count'
+		 */
+		secondaryTextType: {
+			type: String,
+			reflectToAttribute: true,
+			value: 'notifications',
 		},
 		/**
 		 * Secondary text to be display as a superscript on the icon.
