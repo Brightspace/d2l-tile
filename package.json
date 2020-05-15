@@ -49,7 +49,7 @@
     "d2l-link": "BrightspaceUI/link#semver:^5",
     "d2l-offscreen": "BrightspaceUI/offscreen#semver:^4",
     "d2l-polymer-behaviors": "Brightspace/d2l-polymer-behaviors-ui#semver:^2",
-    "resize-observer-polyfill": "^1.5.0",
+    "d2l-resize-aware": "git://github.com/BrightspaceUI/resize-aware.git#semver:^1",
     "@polymer/polymer": "^3.0.0"
   }
 }
