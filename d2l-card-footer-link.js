@@ -97,7 +97,7 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-card-footer-link">
 				right: auto;
 			}
 
-			:host([secondary-text-type="notifications"]) .d2l-card-footer-link-secondary-text {
+			:host([secondary-text-type="notification"]) .d2l-card-footer-link-secondary-text {
 				background-color: var(--d2l-color-carnelian-minus-1);
 				border: 2px solid var(--d2l-color-carnelian-minus-1);
 				color: white;
@@ -155,12 +155,12 @@ Polymer({
 			reflectToAttribute: true
 		},
 		/**
-		 * Sets the color palette for the secondary text, options are 'notifications' and 'count'
+		 * Sets the color palette for the secondary text, options are 'notification' and 'count'
 		 */
 		secondaryTextType: {
 			type: String,
 			reflectToAttribute: true,
-			value: 'notifications',
+			value: 'notification',
 		},
 		/**
 		 * Secondary text to be display as a superscript on the icon.
