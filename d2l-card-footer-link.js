@@ -71,27 +71,44 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-card-footer-link">
 			:host(:dir(rtl)) .d2l-card-footer-link-text {
 				@apply --d2l-offscreen-rtl
 			}
+
 			.d2l-card-footer-link-secondary-text {
-				background-color: white;
-				border: 2px solid var(--d2l-color-carnelian);
-				border-radius: 0.25rem;
+				border-radius: 0.75rem;
 				box-shadow: 0 0 0 1px white;
 				box-sizing: content-box;
-				color: var(--d2l-color-ferrite);
 				display: inline-block;
 				font-size: 0.55rem;
 				font-weight: 400;
+				min-width: 0.5rem;
 				line-height: 100%;
-				min-width: 0.75rem;
 				padding: 2px;
-				position: absolute;
-				right: 0;
-				top: 0;
+				position: relative;
 			}
-			:host(:dir(rtl)) .d2l-card-footer-link-secondary-text {
-				left: 0;
+
+			.d2l-card-footer-link-secondary-text-container {
+				position: absolute;
+				right: 1rem;
+				top: 0;
+				width: 1px;
+			}
+
+			:host(:dir(rtl)) .d2l-card-footer-link-secondary-text-container {
+				left: 1rem;
 				right: auto;
 			}
+
+			:host([secondary-text-type="notification"]) .d2l-card-footer-link-secondary-text {
+				background-color: var(--d2l-color-carnelian-minus-1);
+				border: 2px solid var(--d2l-color-carnelian-minus-1);
+				color: white;
+			}
+
+			:host([secondary-text-type="count"]) .d2l-card-footer-link-secondary-text {
+				background-color: var(--d2l-color-gypsum);
+				border: 2px solid var(--d2l-color-gypsum);
+				color: var(--d2l-color-ferrite);
+			}
+
 			[hidden].d2l-card-footer-link-secondary-text {
 				display: none;
 			}
@@ -101,7 +118,9 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-card-footer-link">
 		</a>
 		<div class="d2l-card-footer-link-content">
 			<d2l-icon icon="[[icon]]"></d2l-icon>
-			<div class="d2l-card-footer-link-secondary-text" aria-hidden="true" hidden="">[[secondaryText]]</div>
+			<div class="d2l-card-footer-link-secondary-text-container">
+				<div class="d2l-card-footer-link-secondary-text" aria-hidden="true" hidden="">[[secondaryText]]</div>
+			</div>
 		</div>
 	</template>
 
@@ -135,7 +154,14 @@ Polymer({
 			type: String,
 			reflectToAttribute: true
 		},
-
+		/**
+		 * Sets the color palette for the secondary text, options are 'notification' and 'count'
+		 */
+		secondaryTextType: {
+			type: String,
+			reflectToAttribute: true,
+			value: 'notification',
+		},
 		/**
 		 * Secondary text to be display as a superscript on the icon.
 		 */
