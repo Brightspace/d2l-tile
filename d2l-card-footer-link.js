@@ -27,7 +27,7 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-card-footer-link">
 		<style include="d2l-offscreen-shared-styles">
 			:host {
 				display: inline-block;
-				left: -0.6rem;
+				left: 0.15rem;
 				margin-right: 0.3rem;
 				position: relative;
 			}
