@@ -38,7 +38,7 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-card-footer-link">
 				left: auto;
 				margin-left: 0.3rem;
 				margin-right: 0;
-				right: -0.6rem;
+				right: 0.15rem;
 			}
 			.d2l-card-footer-link-content {
 				display: inline-block;
