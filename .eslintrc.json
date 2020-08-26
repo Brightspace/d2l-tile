@@ -1,6 +1,3 @@
 {
-  "extends": "brightspace/polymer-3-config",
-  "globals": {
-    "fastdom": false
-  }
+  "extends": "brightspace/polymer-3-config"
 }
