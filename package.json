@@ -7,32 +7,22 @@
   "homepage": "https://github.com/BrightspaceUI/tile",
   "name": "d2l-card",
   "scripts": {
-    "test": "npm run lint && npm run test:polymer:local",
-    "lint": "npm run lint:wc && npm run lint:js",
-    "lint:js": "eslint . --ext .js,.html test/**/*.js test/**/*.html demo/**/*.js demo/**/*.html",
-    "lint:wc": "polymer lint",
-    "test:polymer:local": "polymer test --skip-plugin sauce",
-    "test:polymer:sauce": "polymer test --skip-plugin local"
+    "lint": "npm run lint:js",
+    "lint:js": "eslint . --ext .js,.html demo/**/*.html",
+    "start": "es-dev-server --node-resolve --dedupe --watch --open",
+    "test": "npm run lint"
   },
   "author": "D2L Corporation",
   "license": "Apache-2.0",
   "devDependencies": {
-    "@babel/polyfill": "^7.0.0",
-    "@polymer/iron-component-page": "^3.0.0-pre.18",
-    "@polymer/iron-demo-helpers": "^3.0.0-pre.18",
-    "@webcomponents/webcomponentsjs": "^2.2.1",
-    "babel-eslint": "^10.0.1",
-    "d2l-button": "BrightspaceUI/button#semver:^5",
-    "d2l-dropdown": "BrightspaceUI/dropdown#semver:^7",
-    "d2l-status-indicator": "BrightspaceUI/status-indicator#semver:^3",
-    "d2l-tooltip": "BrightspaceUI/tooltip#semver:^3",
-    "d2l-typography": "BrightspaceUI/typography#semver:^7",
-    "eslint": "^4.17.0",
-    "eslint-config-brightspace": "^0.4.0",
-    "eslint-plugin-html": "^4.0.2",
-    "frau-ci": "^1.33.2",
-    "polymer-cli": "^1.9.1",
-    "wct-browser-legacy": "^1.0.1"
+    "@webcomponents/webcomponentsjs": "^2",
+    "babel-eslint": "^10",
+    "es-dev-server": "^1",
+    "eslint": "^6",
+    "eslint-config-brightspace": "^0.6.0",
+    "eslint-plugin-html": "^6",
+    "eslint-plugin-sort-class-members": "^1",
+    "frau-ci": "^1.33.2"
   },
   "version": "6.9.0",
   "resolutions": {
@@ -43,13 +33,6 @@
   },
   "main": "d2l-card.js",
   "dependencies": {
-    "d2l-colors": "BrightspaceUI/colors#semver:^4",
-    "fastdom": "^1.0.8",
-    "d2l-icons": "BrightspaceUI/icons#semver:^6",
-    "d2l-link": "BrightspaceUI/link#semver:^5",
-    "d2l-offscreen": "BrightspaceUI/offscreen#semver:^4",
-    "d2l-polymer-behaviors": "Brightspace/d2l-polymer-behaviors-ui#semver:^2",
-    "resize-observer-polyfill": "^1.5.0",
-    "@polymer/polymer": "^3.0.0"
+    "@brightspace-ui/core": "^1.74.1"
   }
 }

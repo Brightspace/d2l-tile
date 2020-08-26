@@ -1,107 +1,62 @@
 <!doctype html>
 <html lang="en">
-	<head>
+<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
-		<title>d2l-card demo</title>
-		<script src="../../@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
-		<script type="module" src="../../@polymer/polymer/polymer-legacy.js"></script>
-		<script type="module" src="../../@polymer/iron-demo-helpers/demo-pages-shared-styles.js"></script>
-		<script type="module" src="../../@polymer/iron-demo-helpers/demo-snippet.js"></script>
-		<script type="module" src="../../d2l-typography/d2l-typography.js"></script>
-		<script type="module" src="../../d2l-button/d2l-button.js"></script>
-		<script type="module" src="../../d2l-button/d2l-button-icon.js"></script>
-		<script type="module" src="../../d2l-dropdown/d2l-dropdown-more.js"></script>
-		<script type="module" src="../../d2l-dropdown/d2l-dropdown-content.js"></script>
-		<script type="module" src="../../d2l-status-indicator/d2l-status-indicator.js"></script>
-		<script type="module" src="../../d2l-icons/tier1-icons.js"></script>
-		<script type="module" src="../../d2l-tooltip/d2l-tooltip.js"></script>
-		<script type="module" src="../d2l-card.js"></script>
-		<script type="module" src="../d2l-card-content-title.js"></script>
-		<script type="module" src="../d2l-card-content-meta.js"></script>
-		<script type="module" src="../d2l-card-footer-link.js"></script>
-		<script type="module" src="../d2l-card-loading-shimmer.js"></script>
-		<!-- FIXME(polymer-modulizer):
-		These imperative modules that innerHTML your HTML are
-		a hacky way to be sure that any mixins in included style
-		modules are ready before any elements that reference them are
-		instantiated, otherwise the CSS @apply mixin polyfill won't be
-		able to expand the underlying CSS custom properties.
-		See: https://github.com/Polymer/polymer-modulizer/issues/154
-		-->
-	<script type="module">
-const $_documentContainer = document.createElement('template');
-
-$_documentContainer.innerHTML = `<custom-style>
-			<style is="custom-style" include="demo-pages-shared-styles"></style>
-		</custom-style>`;
-
-document.body.appendChild($_documentContainer.content);
-</script>
+		<link rel="stylesheet" href="/node_modules/@brightspace-ui/core/components/demo/styles.css" type="text/css">
+		<script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
 		<script type="module">
-const $_documentContainer = document.createElement('template');
-
-$_documentContainer.innerHTML = `<custom-style include="d2l-typography">
-			<style is="custom-style" include="d2l-typography">
-				html {
-					--d2l-button: {
-						width: 100%;
-					}
-				}
-			</style>
-		</custom-style>`;
-
-document.body.appendChild($_documentContainer.content);
-</script>
-		<script type="module">
-const $_documentContainer = document.createElement('template');
-
-$_documentContainer.innerHTML = `<style>
-			html {
-				font-size: 20px;
-			}
-			d2l-card {
-				vertical-align: top;
-			}
-			.subtle-demo {
-				background-color: #f6f7f8;
-				margin: -20px;
-				padding: 20px;
-			}
-			.badge {
-				text-align: center;
-			}
-			.badge > img {
-				object-fit: cover;
-				object-position: center;
-				height: 70px;
-				background-color: white;
-				border-radius: 6px;
-				border: 1px solid #565a5c;
-			}
-			.badge-status {
-				background-color: white;
-				border: 1px solid white;
-				border-radius: 0.6rem;
-				display: inline-block;
-			}
-			div[slot="footer"] {
-				display: inline-block;
-			}
-		</style>`;
-
-document.body.appendChild($_documentContainer.content);
-</script>
+			import '/node_modules/@brightspace-ui/core/components/button/button.js';
+			import '/node_modules/@brightspace-ui/core/components/button/button-icon.js';
+			import '/node_modules/@brightspace-ui/core/components/demo/demo-page.js';
+			import '/node_modules/@brightspace-ui/core/components/dropdown/dropdown-more.js';
+			import '/node_modules/@brightspace-ui/core/components/dropdown/dropdown-content.js';
+			import '/node_modules/@brightspace-ui/core/components/status-indicator/status-indicator.js';
+			import '/node_modules/@brightspace-ui/core/components/tooltip/tooltip.js';
+			import '../d2l-card.js';
+			import '../d2l-card-footer-link.js';
+			import '../d2l-card-content-meta.js';
+			import '../d2l-card-content-title.js';
+			import '../d2l-card-loading-shimmer.js';
+		</script>
 	</head>
-	<body unresolved class="d2l-typography">
-		<script type="module">
-const $_documentContainer = document.createElement('template');
+	<style>
+		d2l-card {
+			vertical-align: top;
+		}
+		.subtle-demo {
+			background-color: #f6f7f8;
+			margin: -20px;
+			padding: 20px;
+		}
+		.badge {
+			text-align: center;
+		}
+		.badge > img {
+			object-fit: cover;
+			object-position: center;
+			height: 70px;
+			background-color: white;
+			border-radius: 6px;
+			border: 1px solid #494c4e;
+		}
+		.badge-status {
+			background-color: white;
+			border: 1px solid white;
+			border-radius: 0.6rem;
+			display: inline-block;
+		}
+		div[slot="footer"] {
+			display: inline-block;
+		}
+	</style>
+	<body unresolved>
 
-$_documentContainer.innerHTML = `<div class="vertical-section-container centered" style="max-width: 800px;">
+		<d2l-demo-page page-title="d2l-card (imported from core)">
 
-			<h3>Subtle Card (badges, no-link)</h3>
+			<h2>Subtle Card (badges, no-link)</h2>
 
-			<demo-snippet>
+			<d2l-demo-snippet>
 				<template>
 					<div class="subtle-demo">
 
@@ -128,11 +83,11 @@ $_documentContainer.innerHTML = `<div class="vertical-section-container centered
 
 					</div>
 				</template>
-			</demo-snippet>
+			</d2l-demo-snippet>
 
-			<h3>Subtle Card (header actions, meta-content, footer links)</h3>
+			<h2>Subtle Card (header actions, meta-content, footer links)</h2>
 
-			<demo-snippet>
+			<d2l-demo-snippet>
 				<template>
 					<div class="subtle-demo">
 
@@ -188,13 +143,12 @@ $_documentContainer.innerHTML = `<div class="vertical-section-container centered
 
 					</div>
 				</template>
-			</demo-snippet>
+			</d2l-demo-snippet>
 
-			<h3>Card (badges, no-link)</h3>
+			<h2>Card (badges, no-link)</h2>
 
-			<demo-snippet>
+			<d2l-demo-snippet>
 				<template>
-
 					<d2l-card align-center text="Image Badge" href="https://en.wikipedia.org/wiki/Hydrology" style="width: 245px; height: 280px;">
 						<img slot="header" alt="" style="display: block; width: 100%;" src="https://s.brightspace.com/course-images/images/38e839b1-37fa-470c-8830-b189ce4ae134/tile-high-density-max-size.jpg">
 						<div slot="badge" class="badge">
@@ -215,15 +169,13 @@ $_documentContainer.innerHTML = `<div class="vertical-section-container centered
 						<img slot="header" alt="" style="display: block; width: 100%;" src="https://s.brightspace.com/course-images/images/38e839b1-37fa-470c-8830-b189ce4ae134/tile-high-density-max-size.jpg">
 						<div slot="content">No Link</div>
 					</d2l-card>
-
 				</template>
-			</demo-snippet>
+			</d2l-demo-snippet>
 
-			<h3>Card (header actions, meta-content, footer links)</h3>
+			<h2>Card (header actions, meta-content, footer links)</h2>
 
-			<demo-snippet>
+			<d2l-demo-snippet>
 				<template>
-
 					<d2l-card align-center text="Hydrology" href="https://en.wikipedia.org/wiki/Hydrology" style="width: 245px; height: 300px;">
 						<img slot="header" alt="" style="display: block; width: 100%;" src="https://s.brightspace.com/course-images/images/38e839b1-37fa-470c-8830-b189ce4ae134/tile-high-density-max-size.jpg">
 						<d2l-dropdown-more slot="actions" translucent="" visible-on-ancestor="" text="Open!">
@@ -290,13 +242,10 @@ $_documentContainer.innerHTML = `<div class="vertical-section-container centered
 						<div slot="content">Painting</div>
 						<div slot="footer">Secondary Actions</div>
 					</d2l-card>
-
 				</template>
-			</demo-snippet>
+			</d2l-demo-snippet>
 
-		</div>`;
+		</d2l-demo-page>
 
-document.body.appendChild($_documentContainer.content);
-</script>
 	</body>
 </html>
